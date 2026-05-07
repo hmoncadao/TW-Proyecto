@@ -24,7 +24,12 @@
             <span class="text-sm">Panel del ayuntamiento</span>
         </a>
 
-        <a class="flex items-center gap-3 px-3 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+        <!--a class="flex items-center gap-3 px-3 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800" href="/reportar">
+            <span class="material-symbols-outlined">report_problem</span>
+            <span class="text-sm">Reportar incidencia</span>
+        </a-->
+
+        <a class="flex items-center gap-3 px-3 py-3 {{ request()->is('reportar') ? 'text-[#1B365D] dark:text-blue-400 font-bold border-l-4 border-[#1B365D] bg-slate-50 dark:bg-slate-800/50' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800' }}" href="/reportar">
             <span class="material-symbols-outlined">report_problem</span>
             <span class="text-sm">Reportar incidencia</span>
         </a>

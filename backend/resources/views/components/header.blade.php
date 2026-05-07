@@ -6,27 +6,27 @@
         </div>
 
         <div class="flex items-center gap-4 px-4">
-            <button class="px-6 py-2 bg-[#1B365D] text-white font-label-bold rounded-lg hover:opacity-90 active:scale-[0.98] transition-all">
-                Iniciar Sesión
-            </button>
+            @auth
+                <span class="text-sm font-medium text-slate-700 dark:text-slate-300">{{ auth()->user()->name }}</span>
+                <a 
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                    class="px-6 py-2 bg-red-600 text-white font-label-bold rounded-lg hover:opacity-90 active:scale-[0.98] transition-all cursor-pointer"
+                >
+                    Cerrar Sesión
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            @else
+                <a href="{{ route('login') }}" class="px-6 py-2 bg-[#1B365D] text-white font-label-bold rounded-lg hover:opacity-90 active:scale-[0.98] transition-all">
+                    Iniciar Sesión
+                </a>
 
-            <button class="px-6 py-2 bg-[#1B365D] text-white font-label-bold rounded-lg hover:opacity-90 active:scale-[0.98] transition-all">
-                Registrarse
-            </button>
+                <a href="{{ route('register') }}" class="px-6 py-2 bg-[#1B365D] text-white font-label-bold rounded-lg hover:opacity-90 active:scale-[0.98] transition-all">
+                    Registrarse
+                </a>
+            @endauth
         </div>
-
-        <!-- SOLO SE MUESTRA SI EL USUARIO ESTÁ LOGUEADO -->
-        <!--<div class="flex items-center gap-4">
-            <span class="text-sm font-medium text-slate-700 font-body-md"> Elena Rodríguez </span>
-
-            <div class="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 overflow-hidden flex items-center justify-center">
-                <img
-                    alt="Elena Rodríguez"
-                    class="w-full h-full object-cover"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLZVPjJqnshPIee_uc7iqd5NWKw_hACjKUNT3XyGY7GO5w2qgErpdZD80G-pZt75VY6LJSth8j--dYHi3clI8KL7S7dfJxizO-Ef16nA0gcPjjBDK2BOkdCJ2oh3Xv0CT1vsBv5UVSdPg65naJzCujtif_1zP_oAyWtg85eZC34QJCILZyMiB1jdTSlhqT7ii9teeqwKg_eWNDqOhzdTyIyRHJkboEaCyxfw6zGJLMS_Un8sWDYNieV4PuZlpqRt2nYFlMMoU-2w"
-                />
-            </div>
-        </div>-->
 
     </div>
 </header>
