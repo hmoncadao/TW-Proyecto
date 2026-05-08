@@ -68,7 +68,7 @@
             text-slate-600 border-l-4 border-transparent
             hover:text-[#1B365D] hover:font-bold
             hover:bg-slate-50 hover:border-[#1B365D]"
-            href="#"
+            href="/panel"
         >
             <span class="material-symbols-outlined">admin_panel_settings</span>
             <span class="text-sm">Panel Ayuntamiento</span>
@@ -111,7 +111,7 @@
             href="#"
         >
             <span class="material-symbols-outlined">description</span>
-            <span class="text-sm">Sobre el portal</span>
+            <span class="text-sm">Cómo se hizo</span>
         </a>
 
     </nav>

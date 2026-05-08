@@ -23,7 +23,7 @@
             <a class="text-[10px] sm:text-xs uppercase tracking-wider text-slate-500 hover:text-[#1B365D] flex items-center gap-2"
                href="como_se_hizo.pdf">
                 <span class="material-symbols-outlined text-[16px]">description</span>
-                Sobre este Portal
+                Cómo se hizo
             </a>
 
         </nav>

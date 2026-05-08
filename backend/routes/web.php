@@ -27,3 +27,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/reportar', function () {
     return view('reportarIncidencia'); 
 })->name('reportar');
+
+Route::get('/panel', function () {
+    return view('panelAyuntamiento'); 
+})->name('panel');
