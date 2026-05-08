@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController; // Se importa el controlador
 
 Route::get('/', function () {
-    return view('main');
+    return view('index');
 });
 
 // 1. Ruta de Registro 

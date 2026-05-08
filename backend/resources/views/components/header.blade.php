@@ -4,9 +4,9 @@
 
         <!-- LOGO -->
         <div class="flex items-center">
-            <span class="text-xl font-bold text-[#1B365D] dark:text-blue-400 tracking-tight">
-                GovConnect
-            </span>
+        <a href="/" class="text-xl font-bold text-[#1B365D] dark:text-blue-400 tracking-tight">
+            GovConnect
+        </a>
         </div>
 
         <!-- BOTONES -->
