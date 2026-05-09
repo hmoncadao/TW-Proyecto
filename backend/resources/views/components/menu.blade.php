@@ -54,6 +54,18 @@
             <span class="text-sm">Página Principal</span>
         </a>
 
+        @auth
+        <a class="flex items-center gap-3 px-3 py-3 rounded-lg transition
+            text-slate-600 border-l-4 border-transparent
+            hover:text-[#1B365D] hover:font-bold
+            hover:bg-slate-50 hover:border-[#1B365D]"
+            href="{{ route('profile') }}"
+        >
+            <span class="material-symbols-outlined">account_circle</span>
+            <span class="text-sm">Mi Perfil</span>
+        </a>
+        @endauth
+
         <a class="flex items-center gap-3 px-3 py-3 rounded-lg transition
             text-slate-600 border-l-4 border-transparent
             hover:text-[#1B365D] hover:font-bold

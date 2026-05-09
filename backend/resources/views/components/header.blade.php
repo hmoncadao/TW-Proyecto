@@ -31,7 +31,7 @@
 
             @else
 
-                <a href="{{ route('login') }}"
+                <a href="{{ route('login.show') }}"
                    class="px-3 py-1.5 md:px-6 md:py-2 text-sm md:text-base bg-[#1B365D] text-white font-label-bold rounded-lg hover:opacity-90 active:scale-[0.98] transition-all">
                     Iniciar Sesión
                 </a>

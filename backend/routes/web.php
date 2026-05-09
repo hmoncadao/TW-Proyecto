@@ -15,12 +15,9 @@ Route::get('/register', function () {
 // 2. Ruta POST 
 Route::post('/register', [AuthController::class, 'storeRegister'])->name('register.store');
 
-// 3. Ruta de Login 
-Route::get('/login', function () {
-    return view('login'); 
-})->name('login');
-
-// 4. Ruta de Logout 
+// 3. Rutas de Login/Logout
+Route::get('/login', [AuthController::class, 'show'])->name('login.show');
+Route::post('/login', [AuthController::class, 'store'])->name('login.store');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
@@ -35,3 +32,7 @@ Route::get('/panel', function () {
 Route::get('/contacto', function () {
     return view('contacto');
 })->name('contacto');
+
+Route::get('/profile', function () {
+    return view('profile');
+})->name('profile');
