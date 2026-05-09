@@ -31,3 +31,7 @@ Route::get('/reportar', function () {
 Route::get('/panel', function () {
     return view('panelAyuntamiento'); 
 })->name('panel');
+
+Route::get('/contacto', function () {
+    return view('contacto');
+})->name('contacto');
