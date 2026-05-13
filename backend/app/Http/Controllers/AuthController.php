@@ -9,6 +9,70 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    /**
+     * Mostrar el formulario de login
+     */
+    public function show()
+    {
+        // Si el usuario ya está autenticado, redirigirlo al panel
+        if (Auth::check()) {
+            return redirect()->route('panel');
+        }
+
+        return view('login');
+    }
+
+    /**
+     * Procesar el login
+     */
+    public function store(Request $request)
+    {
+        // Validar los datos
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:8',
+        ], [
+            'email.required' => 'El correo electrónico es obligatorio.',
+            'email.email' => 'El correo electrónico debe ser válido.',
+            'password.required' => 'La contraseña es obligatoria.',
+            'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
+        ]);
+
+        // Intentar autenticar al usuario
+        if (Auth::attempt($credentials)) {
+            // Regenerar la sesión para prevenir session fixation
+            $request->session()->regenerate();
+
+            // Redirigir al usuario a la página que intentaba acceder o al panel
+            return redirect()->intended(route('panel'))
+                ->with('success', 'Bienvenido de vuelta, ' . Auth::user()->name);
+        }
+
+        // Si la autenticación falla, redirigir de vuelta con errores
+        return back()
+            ->withInput($request->only('email'))
+            ->withErrors([
+                'email' => 'Las credenciales no coinciden con nuestros registros.',
+            ]);
+    }
+
+    /**
+     * Cerrar sesión
+     */
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        // Invalidar la sesión
+        $request->session()->invalidate();
+
+        // Regenerar el token CSRF
+        $request->session()->regenerateToken();
+
+        return redirect(route('login.show'))
+            ->with('success', 'Has cerrado sesión correctamente.');
+    }
+
     public function storeRegister(Request $request)
     {
         // 1. Validar los datos (¡La validación de tu compañero estaba perfecta!)

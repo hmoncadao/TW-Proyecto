@@ -59,8 +59,8 @@
                     </p>
                     <div class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-slate-400">mail</span>
-                        <a href="mailto:soporte@govconnect.mx" class="text-sm font-bold text-slate-900 dark:text-white hover:underline">
-                            soporte@govconnect.mx
+                        <a href="mailto:soporte@govconnect.es" class="text-sm font-bold text-slate-900 dark:text-white hover:underline">
+                            soporte@govconnect.es
                         </a>
                     </div>
                 </div>
