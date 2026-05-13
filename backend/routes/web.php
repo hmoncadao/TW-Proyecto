@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController; // Se importa el controlador
+use App\Http\Controllers\IncidenciaController;
 
 Route::get('/', function () {
     return view('main');
@@ -27,3 +28,5 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/reportar', function () {
     return view('reportarIncidencia'); 
 })->name('reportar');
+
+Route::post('/incidencias/guardar', [IncidenciaController::class, 'store'])->name('incidencias.store');

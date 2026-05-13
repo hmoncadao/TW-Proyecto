@@ -2,6 +2,9 @@
 
 @section('content')
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
 <div class="pt-20 pb-20 min-h-screen">
     <div class="max-w-[1280px] mx-auto px-6">
         
@@ -72,8 +75,17 @@
                         Detalles de la Incidencia
                     </h2>
 
+                    @if(session('success'))
+                        <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6 rounded-r shadow-sm" role="alert">
+                            <div class="flex items-center">
+                                <span class="material-symbols-outlined mr-2">check_circle</span>
+                                <p class="font-bold">{{ session('success') }}</p>
+                            </div>
+                        </div>
+                    @endif
+
                     <!-- INICIO DEL FORMULARIO -->
-                    <form action="#" method="POST" enctype="multipart/form-data" class="space-y-6">
+                    <form action="{{ route('incidencias.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
                         @csrf
 
                         <!-- Fila: Título y Categoría -->
@@ -130,26 +142,15 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             
                             <!-- Ubicación -->
-                            <div class="form-group">
+                            <div class="form-group flex flex-col">
                                 <label for="ubicacion" class="block text-sm font-bold text-[#1B365D] dark:text-blue-400 mb-2">
-                                    Ubicación <span class="text-red-500">*</span>
+                                    Ubicación <span class="text-red-500">*</span>   
                                 </label>
-                                <!-- Placeholder del mapa -->
-                                <div class="w-full h-48 bg-slate-100 dark:bg-slate-800 rounded-lg border border-slate-300 dark:border-slate-600 flex flex-col items-center justify-center relative overflow-hidden mb-3">
-                                    <span class="material-symbols-outlined text-4xl text-slate-400 mb-2">map</span>
-                                    <span class="text-sm font-medium text-slate-500">Vista del Mapa</span>
-                                    <button type="button" class="absolute bottom-3 right-3 bg-white dark:bg-slate-700 p-2 rounded-full shadow-md text-[#1B365D] dark:text-blue-400 hover:scale-105 transition-transform">
-                                        <span class="material-symbols-outlined">my_location</span>
-                                    </button>
-                                </div>
-                                <input 
-                                    type="text" 
-                                    id="ubicacion" 
-                                    name="ubicacion" 
-                                    required 
-                                    placeholder="Escriba la dirección manual..."
-                                    class="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#1B365D] focus:border-transparent"
-                                />
+                                <p class="text-xs text-slate-500 mb-2">Haz clic en el mapa para situar la incidencia.</p>
+    
+                                <div id="mapa" class="w-full h-48 bg-slate-100 dark:bg-slate-800 rounded-lg border border-slate-300 dark:border-slate-600 z-0 relative mb-3"></div>
+    
+                                    <input type="hidden" id="ubicacion" name="ubicacion" value="" required>
                             </div>
 
                             <!-- Fotografía -->
@@ -157,17 +158,24 @@
                                 <label for="fotografia" class="block text-sm font-bold text-[#1B365D] dark:text-blue-400 mb-2">
                                     Fotografía <span class="text-red-500">*</span>
                                 </label>
-                                <div class="flex-1 border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-lg bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex flex-col items-center justify-center relative cursor-pointer min-h-[200px]">
+                                <div class="flex-1 border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-lg bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex flex-col items-center justify-center relative cursor-pointer min-h-[200px] overflow-hidden">
+                                    
                                     <input 
                                         type="file" 
                                         id="fotografia" 
                                         name="fotografia" 
-                                        accept=".jpg,.png" 
-                                        class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                        accept=".jpeg,.jpg,.png" 
+                                        class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
                                     />
-                                    <span class="material-symbols-outlined text-4xl text-[#1B365D] dark:text-blue-400 mb-2">cloud_upload</span>
-                                    <span class="text-sm font-bold text-[#1B365D] dark:text-blue-400">Subir archivo</span>
-                                    <span class="text-xs text-slate-500 mt-1">Formatos: .jpg, .png</span>
+                                    
+                                    <div id="dropzone-text" class="flex flex-col items-center justify-center pointer-events-none">
+                                        <span class="material-symbols-outlined text-4xl text-[#1B365D] dark:text-blue-400 mb-2">cloud_upload</span>
+                                        <span class="text-sm font-bold text-[#1B365D] dark:text-blue-400">Subir archivo</span>
+                                        <span class="text-xs text-slate-500 mt-1">Formatos: .jpeg, .jpg, .png</span>
+                                    </div>
+
+                                    <img id="preview-img" src="" alt="Vista previa" class="absolute inset-0 w-full h-full object-cover hidden pointer-events-none" />
+                                    
                                 </div>
                             </div>
 
@@ -196,5 +204,62 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.getElementById('fotografia').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        const previewImg = document.getElementById('preview-img');
+        const dropzoneText = document.getElementById('dropzone-text');
+
+        if (file) {
+            // Creamos una URL temporal para la imagen
+            const objectUrl = URL.createObjectURL(file);
+            
+            // Le pasamos la URL a la etiqueta img y la mostramos
+            previewImg.src = objectUrl;
+            previewImg.classList.remove('hidden');
+            
+            // Ocultamos el texto y el icono de subir archivo
+            dropzoneText.classList.add('hidden');
+        } else {
+            // Si el usuario cancela, volvemos a mostrar el texto original
+            previewImg.src = '';
+            previewImg.classList.add('hidden');
+            dropzoneText.classList.remove('hidden');
+        }
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Coordenadas de Granada
+        const latInicial = 37.1773;
+        const lngInicial = -3.5986;
+
+        const map = L.map('mapa').setView([latInicial, lngInicial], 14);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+
+        const marker = L.marker([latInicial, lngInicial], {draggable: true}).addTo(map);
+
+        function actualizarInput(lat, lng) {
+            document.getElementById('ubicacion').value = lat.toFixed(6) + ', ' + lng.toFixed(6);
+        }
+
+        actualizarInput(latInicial, lngInicial);
+
+        marker.on('dragend', function() {
+            const pos = marker.getLatLng();
+            actualizarInput(pos.lat, pos.lng);
+        });
+
+        map.on('click', function(e) {
+            marker.setLatLng(e.latlng);
+            actualizarInput(e.latlng.lat, e.latlng.lng);
+        });
+    });
+</script>
 
 @endsection
