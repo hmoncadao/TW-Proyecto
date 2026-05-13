@@ -110,7 +110,7 @@
             text-slate-600 border-l-4 border-transparent
             hover:text-[#1B365D] hover:font-bold
             hover:bg-slate-50 hover:border-[#1B365D]"
-            href="#"
+            href="/contacto"
         >
             <span class="material-symbols-outlined">mail</span>
             <span class="text-sm">Contacto</span>
