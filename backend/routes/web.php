@@ -60,3 +60,7 @@ use App\Http\Controllers\ListaIncidenciaController;
 Route::get('/incidencias', [ListaIncidenciaController::class, 'index']);
 
 Route::get('/incidencias/{id}', [ListaIncidenciaController::class, 'show']);
+
+use App\Http\Controllers\PanelController;
+
+Route::get('/panel', [PanelController::class, 'index']);

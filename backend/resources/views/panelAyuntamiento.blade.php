@@ -2,113 +2,222 @@
 
 @section('content')
 
-<main class="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10 pt-28 pb-20 space-y-10">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-  <!-- TITLE -->
-<section class="mb-6">
-    <h1 class="text-3xl font-bold text-[#1B365D] dark:text-blue-400 mb-2 pt-6 lg:pt-0">
+<main class="min-h-screen bg-slate-100">
+
+  <div class="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10 pt-28 pb-20 space-y-10">
+
+    <!-- HEADER -->
+    <section class="space-y-6">
+
+      <h1 class="text-3xl font-bold text-[#1B365D] px-2">
         Panel del Ayuntamiento
-    </h1>
+      </h1>
 
-    <div class="mt-6 bg-white border border-[#C4C7CF] rounded-xl p-6">
+      <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-4">
 
-        <p class="text-gray-600 leading-relaxed mb-4">
-            Esta plataforma es el centro de control de incidencias urbanas del municipio. Aquí se recogen los avisos enviados por la ciudadanía, junto con su ubicación y el estado en el que se encuentran, todo actualizado en tiempo real.
+        <p class="text-slate-600 leading-relaxed">
+          Esta plataforma es el centro de control de incidencias urbanas del municipio. 
+          Aquí se recogen los avisos enviados por la ciudadanía, junto con su ubicación y el estado en el que se encuentran, todo actualizado en tiempo real.
+
+        <p class="text-slate-600 leading-relaxed">
+          El sistema ayuda a los equipos municipales a organizar y priorizar las incidencias para darles 
+          una respuesta más rápida y eficiente. También permite hacer un seguimiento claro de cada caso desde que se reporta hasta que se resuelve.
         </p>
-
-        <p class="text-gray-600 leading-relaxed mb-4">
-            El sistema ayuda a los equipos municipales a organizar y priorizar las incidencias para darles una respuesta más rápida y eficiente. También permite hacer un seguimiento claro de cada caso desde que se reporta hasta que se resuelve.
+        
+        <p class="text-slate-600 leading-relaxed">
+        Queremos contar contigo: tu participación es clave para mejorar la ciudad. Puedes reportar
+          problemas que veas en tu entorno y ayudar a que entre todos hagamos una ciudad más limpia, segura y funcional.
         </p>
+        
 
-        <p class="text-gray-600 leading-relaxed">
-            Queremos contar contigo: tu participación es clave para mejorar la ciudad. Puedes reportar problemas que veas en tu entorno y ayudar a que entre todos hagamos una ciudad más limpia, segura y funcional.
-        </p>
+      <p class="mt-2 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-600 text-sm font-medium">
+          <span class="w-2 h-2 rounded-full bg-[#1B365D]"></span>
+          Último mes:
+          <span class="font-semibold text-[#1B365D]">
+              {{ $incidencias->count() }}
+          </span>
+          incidencias registradas
+      </p>
 
-    </div>
-</section>
+      </div>
 
-  <!-- MAP -->
-  <section class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+    </section>
 
-    <div class="lg:col-span-3 relative h-[500px] rounded-xl overflow-hidden border bg-white">
-      
-      <img class="w-full h-full object-cover"
-           src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNrVq3B2KlSvOOCfByXZz8AtaoDztKzI8wEPXg6PwFbc4Iemr3HkMAEvx_53qPmGZgd9X-0pjHX3bx0ruL3ek41Yrf08y6-2FF6HAW6KCA_xUkydm5g-2I-33fSC_EfraOLcSPwonEgTJrmGqrq_hCxQTKuTDUbn0ikqoWhvlDnVTGfYC_QjdI1WFPQMEt4AQ0mjO20cRJsd-3YXgcmQN-zjq5Frz1DpV9If4u7VqHzP0YBWFIiEm2n0emqGiLfltR03wb11I7VA"/>
+    <!-- MAP + STATS -->
+    <section class="grid grid-cols-1 lg:grid-cols-4 gap-6">
 
-      <!-- PIN -->
-      <div class="absolute top-1/3 left-1/3 group cursor-pointer">
-        <div class="bg-red-500 text-white p-2 rounded-full">
-          <span class="material-symbols-outlined text-sm">warning</span>
+      <!-- MAP -->
+      <div class="lg:col-span-3 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+
+        <div id="map" class="h-[520px] w-full z-0"></div>
+
+      </div>
+
+      <!-- STATS -->
+      <aside class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-6">
+
+        <h2 class="font-bold text-[#1B365D] text-lg">
+          Resumen
+        </h2>
+
+        <div class="space-y-4 text-sm">
+
+          <div class="flex justify-between">
+            <span class="text-slate-500">Total</span>
+            <b>{{ $total }}</b>
+          </div>
+
+          <div class="flex justify-between">
+            <span class="text-slate-500">Resueltas</span>
+            <b class="text-green-600">{{ $resueltas }}</b>
+          </div>
+
+          <div class="flex justify-between">
+            <span class="text-slate-500">Pendientes</span>
+            <b class="text-red-600">{{ $pendientes }}</b>
+          </div>
+
+          <div class="flex justify-between">
+            <span class="text-slate-500">En proceso</span>
+            <b class="text-blue-600">{{ $enProceso }}</b>
+          </div>
+
         </div>
-        <div class="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-white text-xs px-2 py-1 rounded shadow">
-          Bache Calle Mayor
-        </div>
+
+        <a href="{{ url('/reportar') }}"
+           class="block w-full bg-[#1B365D] hover:bg-[#152849] text-white py-3 rounded-xl text-center font-semibold transition">
+          Reportar incidencia
+        </a>
+
+      </aside>
+
+    </section>
+
+    <!-- TABLE -->
+    <section class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+
+      <div class="p-5 border-b bg-slate-50 flex items-center gap-2">
+        <span class="material-symbols-outlined text-[#1B365D]">list</span>
+        <h2 class="font-bold text-[#1B365D]">
+          Incidencias del último mes
+        </h2>
       </div>
 
-    </div>
+      <table class="w-full text-sm">
 
-    <!-- STATS -->
-    <aside class="bg-white border rounded-xl p-5 space-y-4">
-      <h2 class="font-bold text-blue-900">Resumen</h2>
+        <tbody class="divide-y divide-slate-100">
 
-      <div class="flex justify-between">
-        <span>Total</span>
-        <b>1,284</b>
-      </div>
+          @forelse($incidencias as $inc)
 
-      <div class="flex justify-between">
-        <span>Resueltas</span>
-        <b class="text-green-600">842</b>
-      </div>
+          <tr class="hover:bg-slate-50 transition">
 
-      <div class="flex justify-between">
-        <span>Tiempo medio</span>
-        <b>4.2d</b>
-      </div>
+            <td class="p-4 font-medium text-slate-700">
+              {{ $inc->titulo ?? 'Incidencia' }}
+            </td>
 
-      <button class="w-full mt-4 bg-blue-900 text-white py-2 rounded-lg">
-        Reportar incidencia
-      </button>
-    </aside>
+            <td class="p-4 font-semibold
+              @if($inc->estado == 'Pendiente') text-red-600
+              @elseif($inc->estado == 'En Progreso') text-blue-600
+              @else text-green-600 @endif">
+              {{ $inc->estado }}
+            </td>
 
-  </section>
+            <td class="p-4 text-slate-600">
+              {{ $inc->ubicacion }}
+            </td>
 
-  <!-- TABLE -->
-  <section class="bg-white border rounded-xl overflow-hidden">
+            <td class="p-4 text-right text-slate-400">
+              {{ $inc->created_at->diffForHumans() }}
+            </td>
 
-    <div class="p-4 border-b font-bold text-blue-900">
-      Incidencias recientes
-    </div>
+          </tr>
 
-    <table class="w-full text-sm">
-      <tbody>
+          @empty
 
-        <tr class="hover:bg-gray-50 transition">
-          <td class="p-4">Baches</td>
-          <td class="p-4 text-red-600">Pendiente</td>
-          <td class="p-4">Calle Alcalá</td>
-          <td class="p-4 text-right">2h</td>
-        </tr>
+          <tr>
+            <td colspan="4" class="p-6 text-center text-slate-400">
+              No hay incidencias este mes
+            </td>
+          </tr>
 
-        <tr class="hover:bg-gray-50 transition">
-          <td class="p-4">Iluminación</td>
-          <td class="p-4 text-yellow-600">En proceso</td>
-          <td class="p-4">Plaza Sol</td>
-          <td class="p-4 text-right">5h</td>
-        </tr>
+          @endforelse
 
-        <tr class="hover:bg-gray-50 transition">
-          <td class="p-4">Residuos</td>
-          <td class="p-4 text-green-600">Solucionado</td>
-          <td class="p-4">Gran Vía</td>
-          <td class="p-4 text-right">Ayer</td>
-        </tr>
+        </tbody>
 
-      </tbody>
-    </table>
+      </table>
 
-  </section>
+    </section>
 
+  </div>
 </main>
+
+<!-- MAP SCRIPT -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const map = L.map('map', {
+        scrollWheelZoom: true,
+        dragging: true
+    }).setView([39.9864, -0.0513], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap'
+    }).addTo(map);
+
+    const incidencias = @json($incidencias);
+
+    function color(estado) {
+        if (estado === 'Pendiente') return 'red';
+        if (estado === 'En Progreso') return 'blue';
+        return 'green';
+    }
+
+    const bounds = [];
+
+    incidencias.forEach(i => {
+
+        if (!i.ubicacion) return;
+
+        // 🔥 intentamos parsear "lat, lng"
+        const parts = i.ubicacion.split(',');
+
+        if (parts.length !== 2) return;
+
+        const lat = parseFloat(parts[0].trim());
+        const lng = parseFloat(parts[1].trim());
+
+        if (isNaN(lat) || isNaN(lng)) return;
+
+        const marker = L.circleMarker([lat, lng], {
+            radius: 8,
+            color: color(i.estado),
+            fillColor: color(i.estado),
+            fillOpacity: 0.9,
+            weight: 2
+        })
+        .addTo(map)
+        .bindPopup(`
+            <b>${i.titulo ?? 'Incidencia'}</b><br>
+            ${i.estado}<br>
+            <small>${i.ubicacion}</small>
+        `);
+
+        bounds.push([lat, lng]);
+    });
+
+    // 🔥 ajustar mapa a todos los puntos
+    if (bounds.length > 0) {
+        map.fitBounds(bounds, { padding: [30, 30] });
+    }
+
+    setTimeout(() => {
+        map.invalidateSize();
+    }, 200);
+
+});
+</script>
 
 @endsection
