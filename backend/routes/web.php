@@ -58,3 +58,5 @@ Route::middleware('auth')->group(function () {
 use App\Http\Controllers\ListaIncidenciaController;
 
 Route::get('/incidencias', [ListaIncidenciaController::class, 'index']);
+
+Route::get('/incidencias/{id}', [ListaIncidenciaController::class, 'show']);

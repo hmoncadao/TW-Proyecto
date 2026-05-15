@@ -144,7 +144,8 @@
                         </td>
 
                         <td class="px-6 py-4 text-center">
-                            <a href="#" class="text-[#1B365D] font-semibold hover:underline">
+                            <a href="{{ url('/incidencias/' . $incidencia->id) }}" 
+                               class="text-[#1B365D] font-semibold hover:underline">
                                 Ver detalle
                             </a>
                         </td>

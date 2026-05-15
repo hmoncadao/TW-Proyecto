@@ -174,9 +174,9 @@
                         </span>
                     </div>
 
-                    <h3 class="text-2xl font-bold text-[#1B365D] mb-4">
+                    <a href="/reportar" class="text-2xl font-bold text-[#1B365D] mb-4 hover:underline py-24">
                         Reporte de incidencias
-                    </h3>
+                    </a>
 
                     <p class="text-gray-600 leading-relaxed">
                         Reporta baches, iluminación defectuosa o problemas de limpieza en segundos con geolocalización automática.
@@ -184,12 +184,12 @@
 
                 </div>
 
-                <button class="mt-8 text-[#1B365D] font-semibold flex items-center gap-2 hover:gap-3 transition">
+                <a href="/reportar" class="mt-8 text-[#1B365D] font-semibold flex items-center gap-2 hover:gap-3 transition">
                     Iniciar reporte
                     <span class="material-symbols-outlined">
                         arrow_forward
                     </span>
-                </button>
+                </a>
 
             </div>
 
