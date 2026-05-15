@@ -2,7 +2,7 @@
 
 @section('content')
 
-<main class="max-w-6xl mx-auto px-6 py-10 pt-24 space-y-8">
+<main class="max-w-6xl mx-auto px-6 pb-20 pt-32 sm:pt-28 lg:pt-24 space-y-8 min-h-screen">
 
   <!-- TITLE -->
   <div>

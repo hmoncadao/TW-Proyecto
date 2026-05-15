@@ -40,7 +40,7 @@
     "
 >
 
-    <div class="p-8 pt-16 lg:pt-8">
+    <div class="p-6 pt-16 lg:pt-6">
         <h2 class="text-lg font-black text-[#1B365D] uppercase tracking-wider">
             MENU
         </h2>
@@ -152,11 +152,11 @@
     "
 >
 
-    <div class="p-6 border-b border-slate-100">
+    <div class="p-6 pt-16 lg:pt-6 border-b border-slate-100">
         <h2 class="text-lg font-black text-[#1B365D] uppercase tracking-wider">
-            Dashboard
+            Panel de Información
         </h2>
-        <p class="text-xs text-slate-500 font-medium">
+        <p class="text-xs text-slate-500 font-medium py-1">
             Estado del sistema
         </p>
     </div>

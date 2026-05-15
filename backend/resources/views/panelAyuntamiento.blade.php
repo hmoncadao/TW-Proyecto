@@ -7,7 +7,7 @@
 
 <main class="min-h-screen bg-slate-100">
 
-  <div class="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-10 pt-28 pb-20 space-y-10">
+  <div class="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-12 pt-32 pb-20 space-y-10">
 
     <!-- HEADER -->
     <section class="space-y-6">
