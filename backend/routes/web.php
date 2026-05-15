@@ -40,9 +40,21 @@ Route::get('/profile', function () {
     return view('profile');
 })->name('profile');
 
+Route::get('/incidencias', function () {
+    return view('incidencias');
+})->name('incidencias');
+
+Route::get('/detalle', function () {
+    return view('detalleIncidencia');
+})->name('detalle');
+
 // Rutas protegidas de perfil
 Route::middleware('auth')->group(function () {
     Route::post('/profile/update-personal', [ProfileController::class, 'updatePersonal'])->name('profile.update.personal');
     Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update.password');
     Route::post('/profile/update-notifications', [ProfileController::class, 'updateNotifications'])->name('profile.update.notifications');
 });
+
+use App\Http\Controllers\ListaIncidenciaController;
+
+Route::get('/incidencias', [ListaIncidenciaController::class, 'index']);

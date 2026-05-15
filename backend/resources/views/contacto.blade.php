@@ -38,7 +38,7 @@
                     </div>
                     <div>
                         <p class="text-sm text-gray-500 mb-1">Correo de contacto</p>
-                        <p class="text-lg font-semibold">tw@ugr.es</p>
+                        <p class="text-lg font-semibold">contacto@govconnect.es</p>
                     </div>
                 </div>
             </div>

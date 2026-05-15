@@ -77,7 +77,7 @@
             text-slate-600 border-l-4 border-transparent
             hover:text-[#1B365D] hover:font-bold
             hover:bg-slate-50 hover:border-[#1B365D]"
-            href="#"
+            href="/incidencias"
         >
             <span class="material-symbols-outlined">public</span>
             <span class="text-sm">Incidencias</span>
@@ -101,16 +101,6 @@
         >
             <span class="material-symbols-outlined">report_problem</span>
             <span class="text-sm">Reportar incidencia</span>
-        </a>
-
-        <a class="flex items-center gap-3 px-3 py-3 rounded-lg transition
-            text-slate-600 border-l-4 border-transparent
-            hover:text-[#1B365D] hover:font-bold
-            hover:bg-slate-50 hover:border-[#1B365D]"
-            href="#"
-        >
-            <span class="material-symbols-outlined">help</span>
-            <span class="text-sm">Buscar incidencia</span>
         </a>
 
         <a class="flex items-center gap-3 px-3 py-3 rounded-lg transition
