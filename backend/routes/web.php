@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController; // Se importa el controlador
 use App\Http\Controllers\IncidenciaController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return view('index');
@@ -38,3 +39,10 @@ Route::get('/contacto', function () {
 Route::get('/profile', function () {
     return view('profile');
 })->name('profile');
+
+// Rutas protegidas de perfil
+Route::middleware('auth')->group(function () {
+    Route::post('/profile/update-personal', [ProfileController::class, 'updatePersonal'])->name('profile.update.personal');
+    Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update.password');
+    Route::post('/profile/update-notifications', [ProfileController::class, 'updateNotifications'])->name('profile.update.notifications');
+});
