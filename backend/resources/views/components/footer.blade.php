@@ -1,4 +1,4 @@
-<footer class="bg-[#F8F9FA] dark:bg-slate-950 border-t border-[#C4C7CF] dark:border-slate-800 mt-auto">
+<footer class="relative z-0 bg-[#F8F9FA] dark:bg-slate-950 border-t border-[#C4C7CF] dark:border-slate-800 mt-auto">
     <div class="w-full py-6 sm:py-8 px-6 flex flex-col md:flex-row justify-between items-center gap-6 md:gap-0 max-w-[1280px] mx-auto">
 
         <!-- LOGO + COPYRIGHT -->

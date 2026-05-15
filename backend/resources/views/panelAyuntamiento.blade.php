@@ -6,7 +6,7 @@
 
   <!-- TITLE -->
 <section class="mb-6">
-    <h1 class="text-3xl font-bold text-[#1B365D] dark:text-blue-400 mb-2">
+    <h1 class="text-3xl font-bold text-[#1B365D] dark:text-blue-400 mb-2 pt-6 lg:pt-0">
         Panel del Ayuntamiento
     </h1>
 

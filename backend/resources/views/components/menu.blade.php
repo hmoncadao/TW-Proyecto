@@ -1,17 +1,25 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
-<!-- BOTÓN MOBILE -->
+<!-- BOTÓN MOBILE IZQUIERDO -->
 <button
     id="menuBtn"
-    class="fixed top-20 left-4 z-50 md:hidden bg-white dark:bg-slate-800 w-11 h-11 rounded-lg shadow flex items-center justify-center"
+    class="fixed top-20 left-4 z-[10000] lg:hidden bg-white dark:bg-slate-800 w-11 h-11 rounded-lg shadow flex items-center justify-center"
 >
     <span class="material-symbols-outlined">menu</span>
+</button>
+
+<!-- BOTÓN MOBILE DERECHO -->
+<button
+    id="rightMenuBtn"
+    class="fixed top-20 right-4 z-[10000] lg:hidden bg-white dark:bg-slate-800 w-11 h-11 rounded-lg shadow flex items-center justify-center"
+>
+    <span class="material-symbols-outlined">dashboard</span>
 </button>
 
 <!-- OVERLAY -->
 <div
     id="overlay"
-    class="fixed inset-0 bg-black/50 z-40 hidden md:hidden"
+    class="fixed inset-0 bg-black/50 z-[9998] hidden lg:hidden"
 ></div>
 
 <!-- LEFT SIDEBAR (MENU) -->
@@ -20,20 +28,19 @@
     class="
         bg-white dark:bg-slate-900
         border-r border-t border-[#C4C7CF] dark:border-slate-700
-        fixed left-0 top-16
-        h-[calc(100vh-64px)]
-        z-50
+        fixed left-0 top-16 bottom-0
+        z-[9999]
         flex flex-col
         w-64
 
         transform -translate-x-full
         transition-transform duration-300 ease-in-out
 
-        md:translate-x-0
+        lg:translate-x-0
     "
 >
 
-    <div class="p-6">
+    <div class="p-8 pt-16 lg:pt-8">
         <h2 class="text-lg font-black text-[#1B365D] uppercase tracking-wider">
             MENU
         </h2>
@@ -143,16 +150,18 @@
     class="
         bg-white dark:bg-slate-900
         border-l border-t border-[#C4C7CF] dark:border-slate-700
-        fixed right-0 top-16
-        h-[calc(100vh-64px)]
+        fixed right-0 top-16 bottom-0
         w-64
         flex flex-col
-        z-40
-        hidden md:flex
+        z-[9999]
+
+        transform translate-x-full
+        transition-transform duration-300 ease-in-out
+
+        lg:translate-x-0
     "
 >
 
-    <!-- HEADER -->
     <div class="p-6 border-b border-slate-100">
         <h2 class="text-lg font-black text-[#1B365D] uppercase tracking-wider">
             Dashboard
@@ -162,7 +171,6 @@
         </p>
     </div>
 
-    <!-- CONTENT -->
     <div class="flex-1 p-4 space-y-4 overflow-y-auto">
 
         <div class="bg-green-50 rounded-lg p-3">
@@ -198,3 +206,35 @@
     </div>
 
 </aside>
+
+<!-- JAVASCRIPT -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const sidebar = document.getElementById("sidebar");
+    const rightSidebar = document.getElementById("rightSidebar");
+    const overlay = document.getElementById("overlay");
+
+    const menuBtn = document.getElementById("menuBtn");
+    const rightMenuBtn = document.getElementById("rightMenuBtn");
+
+    menuBtn.addEventListener("click", () => {
+        rightSidebar.classList.add("translate-x-full");
+        sidebar.classList.toggle("-translate-x-full");
+        overlay.classList.toggle("hidden");
+    });
+
+    rightMenuBtn.addEventListener("click", () => {
+        sidebar.classList.add("-translate-x-full");
+        rightSidebar.classList.toggle("translate-x-full");
+        overlay.classList.toggle("hidden");
+    });
+
+    overlay.addEventListener("click", () => {
+        sidebar.classList.add("-translate-x-full");
+        rightSidebar.classList.add("translate-x-full");
+        overlay.classList.add("hidden");
+    });
+
+});
+</script>

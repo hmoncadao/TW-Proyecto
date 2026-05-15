@@ -9,10 +9,11 @@
     <div class="max-w-[1280px] mx-auto px-6">
         
         <!-- Encabezado de la página -->
-        <div class="mb-8">
+        <div class="mb-8 pt-16 lg:pt-0">
             <h1 class="text-3xl font-bold text-[#1B365D] dark:text-blue-400 mb-2">
                 Reportar Incidencia
             </h1>
+
             <p class="text-slate-600 dark:text-slate-400">
                 Ayúdenos a mejorar nuestra ciudad. Su reporte será canalizado directamente al departamento correspondiente.
             </p>

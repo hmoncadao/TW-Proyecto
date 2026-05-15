@@ -28,13 +28,15 @@
 
             <div class="flex gap-4 flex-wrap justify-center md:justify-start">
 
-                <button class="bg-white text-primary px-6 py-3 rounded-xl font-semibold shadow-lg hover:scale-105 transition">
+                <a href="/reportar"
+                class="inline-block bg-white text-primary px-6 py-3 rounded-xl font-semibold shadow-lg hover:scale-105 transition">
                     Reportar incidencia
-                </button>
+                </a>
 
-                <button class="border border-white/60 text-white px-6 py-3 rounded-xl hover:bg-white/10 transition">
+                <a href="/panel"
+                class="inline-block bg-white text-primary px-6 py-3 rounded-xl font-semibold shadow-lg hover:scale-105 transition">
                     Explorar servicios
-                </button>
+                </a>
 
             </div>
 
