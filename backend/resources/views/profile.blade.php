@@ -18,18 +18,24 @@
                 <!-- Información del usuario -->
                 <div class="flex-1 text-center md:text-left">
                     <h1 class="text-3xl font-bold text-[#1B365D] dark:text-blue-400 mb-2">
-                        Javier Maestre
+                        {{ Auth::user()->name }} {{ Auth::user()->surname ?? '' }}
                     </h1>
                     <p class="text-slate-600 dark:text-slate-400 mb-4">
-                        javimacer1@gmail.com
+                        {{ Auth::user()->email }}
                     </p>
                     <div class="flex flex-wrap gap-3 justify-center md:justify-start">
                         <span class="text-sm font-bold text-white bg-[#1B365D] px-4 py-2 rounded-full">
-                            Usuario verificado
+                            @if(Auth::user()->email_verified_at) Usuario verificado @else Pendiente de verificar @endif
                         </span>
                         <span class="text-sm font-bold text-slate-600 bg-slate-200 dark:bg-slate-700 dark:text-slate-300 px-4 py-2 rounded-full">
-                            Miembro desde 2024
+                            Miembro desde {{ Auth::user()->created_at->format('Y') }}
                         </span>
+                        @if(Auth::user()->isAdmin())
+                        <span class="text-sm font-bold text-amber-800 bg-amber-100 border border-amber-300 px-4 py-2 rounded-full flex items-center gap-1">
+                            <span class="material-symbols-outlined text-base">verified_user</span>
+                            Administrador
+                        </span>
+                        @endif
                     </div>
                 </div>
 
@@ -58,6 +64,23 @@
                         Información Personal
                     </h2>
 
+                    @if ($message = Session::get('success'))
+                        <div class="bg-green-50 dark:bg-green-900/20 border border-green-300 dark:border-green-700 rounded-lg p-4 mb-6">
+                            <p class="text-sm text-green-700 dark:text-green-400">{{ $message }}</p>
+                        </div>
+                    @endif
+
+                    @if ($errors->any())
+                        <div class="bg-red-50 dark:bg-red-900/20 border border-red-300 dark:border-red-700 rounded-lg p-4 mb-6">
+                            <p class="text-sm font-bold text-red-700 dark:text-red-400 mb-2">Por favor, corrija los siguientes errores:</p>
+                            <ul class="text-xs text-red-600 dark:text-red-300 list-disc list-inside space-y-1">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                     <form action="{{ route('profile.update.personal') }}" method="POST" class="space-y-6">
                         @csrf
 
@@ -72,7 +95,7 @@
                                     id="name"
                                     name="name"
                                     required
-                                    value="Javier"
+                                    value="{{ Auth::user()->name }}"
                                     class="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#1B365D] focus:border-transparent"
                                 />
                             </div>
@@ -86,7 +109,7 @@
                                     id="surname"
                                     name="surname"
                                     required
-                                    value="Maestre Cerdeño"
+                                    value="{{ Auth::user()->surname }}"
                                     class="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#1B365D] focus:border-transparent"
                                 />
                             </div>
@@ -102,7 +125,7 @@
                                 id="email"
                                 name="email"
                                 required
-                                value="javimacer1@gmail.com"
+                                value="{{ Auth::user()->email }}"
                                 class="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#1B365D] focus:border-transparent"
                             />
                         </div>
@@ -117,7 +140,7 @@
                                 id="phone"
                                 name="phone"
                                 required
-                                value="+34 626 197 003"
+                                value="{{ Auth::user()->phone }}"
                                 class="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#1B365D] focus:border-transparent"
                             />
                         </div>
@@ -132,7 +155,7 @@
                                 id="address"
                                 name="address"
                                 required
-                                value="Calle Gonzalo Gallas, 23"
+                                value="{{ Auth::user()->address }}"
                                 class="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#1B365D] focus:border-transparent"
                             />
                         </div>
@@ -148,7 +171,7 @@
                                     id="city"
                                     name="city"
                                     required
-                                    value="Granada"
+                                    value="{{ Auth::user()->city }}"
                                     class="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#1B365D] focus:border-transparent"
                                 />
                             </div>
@@ -162,7 +185,7 @@
                                     id="postal_code"
                                     name="postal_code"
                                     required
-                                    value="18003"
+                                    value="{{ Auth::user()->postal_code }}"
                                     class="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#1B365D] focus:border-transparent"
                                 />
                             </div>
