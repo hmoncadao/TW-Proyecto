@@ -27,6 +27,7 @@ Route::get('/reportar', function () {
 })->name('reportar');
 
 Route::post('/incidencias/guardar', [IncidenciaController::class, 'store'])->name('incidencias.store');
+
 Route::get('/panel', function () {
     return view('panelAyuntamiento'); 
 })->name('panel');
