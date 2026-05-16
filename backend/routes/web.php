@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController; // Se importa el controlador
 use App\Http\Controllers\IncidenciaController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
     return view('index');
@@ -58,6 +59,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/profile/update-personal', [ProfileController::class, 'updatePersonal'])->name('profile.update.personal');
     Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update.password');
     Route::post('/profile/update-notifications', [ProfileController::class, 'updateNotifications'])->name('profile.update.notifications');
+});
+
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/incidencias', [AdminController::class, 'index'])->name('incidencias');
+    Route::post('/incidencias/{id}/estado', [AdminController::class, 'updateEstado'])->name('incidencias.estado');
+    Route::delete('/incidencias/{id}', [AdminController::class, 'destroy'])->name('incidencias.destroy');
 });
 
 // Controller ListaIncidencias

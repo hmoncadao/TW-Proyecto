@@ -30,6 +30,12 @@
                         <span class="text-sm font-bold text-slate-600 bg-slate-200 dark:bg-slate-700 dark:text-slate-300 px-4 py-2 rounded-full">
                             Miembro desde {{ Auth::user()->created_at->format('Y') }}
                         </span>
+                        @if(Auth::user()->isAdmin())
+                        <span class="text-sm font-bold text-amber-800 bg-amber-100 border border-amber-300 px-4 py-2 rounded-full flex items-center gap-1">
+                            <span class="material-symbols-outlined text-base">verified_user</span>
+                            Administrador
+                        </span>
+                        @endif
                     </div>
                 </div>
 

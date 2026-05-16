@@ -71,6 +71,16 @@
             <span class="material-symbols-outlined">account_circle</span>
             <span class="text-sm">Mi Perfil</span>
         </a>
+        @if(Auth::user()->isAdmin())
+        <a class="flex items-center gap-3 px-3 py-3 rounded-lg transition
+            text-amber-700 border-l-4 border-transparent bg-amber-50
+            hover:bg-amber-100 hover:border-amber-500 font-semibold"
+            href="{{ route('admin.incidencias') }}"
+        >
+            <span class="material-symbols-outlined">verified_user</span>
+            <span class="text-sm">Panel Admin</span>
+        </a>
+        @endif
         @endauth
 
         <a class="flex items-center gap-3 px-3 py-3 rounded-lg transition
