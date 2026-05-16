@@ -6,7 +6,7 @@
 
 <div class="w-full max-w-[1280px] mx-auto flex flex-col gap-8">
 
-    <!-- TITLE -->
+    <!-- Título -->
     <div>
         <h1 class="text-3xl font-bold text-[#1B365D]">Monitor de Incidencias</h1>
         <p class="text-slate-600 mt-2">
@@ -14,13 +14,13 @@
         </p>
     </div>
 
-    <!-- FORM -->
+    <!-- Formulario de incidencia -->
     <form method="GET" action="{{ url('/incidencias') }}" 
-          class="bg-white border border-slate-200 p-6 rounded-lg shadow-sm">
+        class="bg-white border border-slate-200 p-6 rounded-lg shadow-sm">
 
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
 
-            <!-- SEARCH -->
+            <!-- Buscador -->
             <div class="md:col-span-2 flex flex-col gap-2">
                 <label class="text-sm font-semibold text-slate-600">Búsqueda</label>
 
@@ -30,7 +30,7 @@
                     class="w-full px-3 py-3 border rounded-lg focus:ring-2 focus:ring-[#1B365D]">
             </div>
 
-            <!-- ESTADO -->
+            <!-- Estado -->
             <div class="flex flex-col gap-2">
                 <label class="text-sm font-semibold text-slate-600">Estado</label>
 
@@ -43,7 +43,7 @@
                 </select>
             </div>
 
-            <!-- CATEGORÍA -->
+            <!-- Categoría -->
             <div class="flex flex-col gap-2">
                 <label class="text-sm font-semibold text-slate-600">Categoría</label>
 
@@ -56,7 +56,7 @@
                 </select>
             </div>
 
-            <!-- MES + AÑO -->
+            <!-- Mes + Año -->
             <div class="md:col-span-2 grid grid-cols-2 gap-2">
                 
                 <select name="mes"
@@ -77,16 +77,16 @@
 
             </div>
 
-            <!-- BUTTONS -->
+            <!-- Botones -->
             <div class="flex items-end md:col-start-3 gap-3">
 
-                <!-- FILTRAR -->
+                <!-- Filtrar -->
                 <button type="submit"
                     class="w-full bg-[#1B365D] text-white py-3 rounded-lg hover:bg-[#152849] transition">
                     Filtrar
                 </button>
 
-                <!-- LIMPIAR -->
+                <!-- Limpiar -->
                 <a href="{{ url('/incidencias') }}"
                     class="w-full text-center bg-slate-200 text-slate-700 py-3 rounded-lg hover:bg-slate-300 transition">
                     Limpiar
@@ -97,76 +97,76 @@
         </div>
     </form>
 
-    <!-- TABLE -->
-<section class="bg-white border border-slate-200 rounded-lg shadow-sm">
+    <!-- Tabla -->
+    <section class="bg-white border border-slate-200 rounded-lg shadow-sm">
 
-    <div class="overflow-x-auto w-full">
+        <div class="overflow-x-auto w-full">
 
-        <table class="w-full min-w-[900px] text-left">
+            <table class="w-full min-w-[900px] text-left">
 
-            <thead class="bg-slate-100">
-                <tr>
-                    <th class="px-6 py-4 whitespace-nowrap">ID</th>
-                    <th class="px-6 py-4 whitespace-nowrap">Categoría</th>
-                    <th class="px-6 py-4 whitespace-nowrap">Título</th>
-                    <th class="px-6 py-4 whitespace-nowrap">Estado</th>
-                    <th class="px-6 py-4 whitespace-nowrap">Fecha</th>
-                    <th class="px-6 py-4 text-center whitespace-nowrap">Detalle</th>
-                </tr>
-            </thead>
+                <thead class="bg-slate-100">
+                    <tr>
+                        <th class="px-6 py-4 whitespace-nowrap">ID</th>
+                        <th class="px-6 py-4 whitespace-nowrap">Categoría</th>
+                        <th class="px-6 py-4 whitespace-nowrap">Título</th>
+                        <th class="px-6 py-4 whitespace-nowrap">Estado</th>
+                        <th class="px-6 py-4 whitespace-nowrap">Fecha</th>
+                        <th class="px-6 py-4 text-center whitespace-nowrap">Detalle</th>
+                    </tr>
+                </thead>
 
-            <tbody class="divide-y divide-slate-200">
+                <tbody class="divide-y divide-slate-200">
 
-            @forelse($incidencias as $incidencia)
+                @forelse($incidencias as $incidencia)
 
-                <tr class="hover:bg-slate-50">
-                    <td class="px-6 py-4 font-semibold whitespace-nowrap">#{{ $incidencia->id }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $incidencia->categoria }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $incidencia->titulo }}</td>
+                    <tr class="hover:bg-slate-50">
+                        <td class="px-6 py-4 font-semibold whitespace-nowrap">#{{ $incidencia->id }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $incidencia->categoria }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $incidencia->titulo }}</td>
 
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        @if($incidencia->estado === 'Pendiente')
-                            <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm">
-                                Pendiente
-                            </span>
-                        @elseif($incidencia->estado === 'En Progreso')
-                            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">
-                                En Progreso
-                            </span>
-                        @else
-                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
-                                Resuelta
-                            </span>
-                        @endif
-                    </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            @if($incidencia->estado === 'Pendiente')
+                                <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm">
+                                    Pendiente
+                                </span>
+                            @elseif($incidencia->estado === 'En Progreso')
+                                <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">
+                                    En Progreso
+                                </span>
+                            @else
+                                <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
+                                    Resuelta
+                                </span>
+                            @endif
+                        </td>
 
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        {{ $incidencia->created_at }}
-                    </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            {{ $incidencia->created_at }}
+                        </td>
 
-                    <td class="px-6 py-4 text-center whitespace-nowrap">
-                        <a href="{{ url('/incidencias/' . $incidencia->id) }}" 
-                           class="text-[#1B365D] font-semibold hover:underline">
-                            Ver detalle
-                        </a>
-                    </td>
-                </tr>
+                        <td class="px-6 py-4 text-center whitespace-nowrap">
+                            <a href="{{ url('/incidencias/' . $incidencia->id) }}" 
+                            class="text-[#1B365D] font-semibold hover:underline">
+                                Ver detalle
+                            </a>
+                        </td>
+                    </tr>
 
-            @empty
-                <tr>
-                    <td colspan="6" class="text-center py-6 text-slate-500">
-                        No hay incidencias
-                    </td>
-                </tr>
-            @endforelse
+                @empty
+                    <tr>
+                        <td colspan="6" class="text-center py-6 text-slate-500">
+                            No hay incidencias
+                        </td>
+                    </tr>
+                @endforelse
 
-            </tbody>
+                </tbody>
 
-        </table>
+            </table>
 
-    </div>
+        </div>
 
-</section>
+    </section>
 
 </div>
 

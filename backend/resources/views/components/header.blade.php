@@ -2,14 +2,14 @@
 
     <div class="flex justify-between items-center h-16 w-full px-6 max-w-[1280px] mx-auto">
 
-        <!-- LOGO -->
+        <!-- Nombre (Logo) -->
         <div class="flex items-center">
         <a href="/" class="text-xl font-bold text-[#1B365D] dark:text-blue-400 tracking-tight">
             GovConnect
         </a>
         </div>
 
-        <!-- BOTONES -->
+        <!-- Botones -->
         <div class="flex items-center gap-3 ml-auto">
 
             @auth
@@ -32,12 +32,12 @@
             @else
 
                 <a href="{{ route('login.show') }}"
-                   class="px-3 py-1.5 md:px-6 md:py-2 text-sm md:text-base bg-[#1B365D] text-white font-label-bold rounded-lg hover:opacity-90 active:scale-[0.98] transition-all">
+                class="px-3 py-1.5 md:px-6 md:py-2 text-sm md:text-base bg-[#1B365D] text-white font-label-bold rounded-lg hover:opacity-90 active:scale-[0.98] transition-all">
                     Iniciar Sesión
                 </a>
 
                 <a href="{{ route('register') }}"
-                   class="px-3 py-1.5 md:px-6 md:py-2 text-sm md:text-base bg-[#1B365D] text-white font-label-bold rounded-lg hover:opacity-90 active:scale-[0.98] transition-all">
+                class="px-3 py-1.5 md:px-6 md:py-2 text-sm md:text-base bg-[#1B365D] text-white font-label-bold rounded-lg hover:opacity-90 active:scale-[0.98] transition-all">
                     Registrarse
                 </a>
 

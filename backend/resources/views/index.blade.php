@@ -3,7 +3,7 @@
 @section('content')
 
 <main class="bg-background text-on-background min-h-screen">
-<!-- HERO -->
+
 <section class="relative h-[650px] flex items-center justify-center overflow-hidden">
 
     <div class="absolute inset-0">
@@ -45,8 +45,7 @@
     </div>
 </section>
 
-<!-- ACTIVIDAD -->
-<!-- ACTIVIDAD -->
+<!-- Actividad -->
 <section class="relative z-20 -mt-14 px-6 md:px-8 flex justify-center">
 
     <div class="w-full max-w-[1280px] flex justify-center">
@@ -102,14 +101,14 @@
     </div>
 </section>
 
-<!-- ABOUT -->
+<!-- Sobre -->
 <section class="py-28 bg-white">
 
     <div class="max-w-[1280px] mx-auto px-6 md:px-8">
     
         <div class="grid md:grid-cols-12 gap-16 items-center">
 
-            <!-- TEXTO -->
+            <!-- Texto de intro -->
             <div class="md:col-span-7">
 
                 <span class="inline-block text-xs font-semibold tracking-[0.2em] uppercase text-[#1B365D]/70 mb-3">
@@ -142,11 +141,11 @@
 
             </div>
 
-            <!-- IMAGEN -->
+            <!-- Imagen -->
             <div class="md:col-span-5 flex justify-center">
 
                 <img class="rounded-2xl shadow-xl border border-gray-100 w-full max-w-md md:max-w-lg object-cover"
-                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLPH-JxU-Vv_6_Gl3B5XUAfpYlUkFowPLGzjeTt862E6BbmRQYW1NPnsmXiaN82r3xaJRq3RkQlh5eUf6SHCZI5Ic6JwQCDBA7AuFEKvVGR46X74acLHIWLEcaaKQScHNQpNoCvCOIoX15SGVd9D_VnUcWg55gcoX6oiQWKza7UnYTU_en2ZqT-A-vAPCAOr2NxX5UwJb9hJLGicA2FiYX8l42Bo0ep7MaCSd4DWY2iY-J4nnVUKL4-Rvk731yD65Y7uLqBnNWHQ"/>
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLPH-JxU-Vv_6_Gl3B5XUAfpYlUkFowPLGzjeTt862E6BbmRQYW1NPnsmXiaN82r3xaJRq3RkQlh5eUf6SHCZI5Ic6JwQCDBA7AuFEKvVGR46X74acLHIWLEcaaKQScHNQpNoCvCOIoX15SGVd9D_VnUcWg55gcoX6oiQWKza7UnYTU_en2ZqT-A-vAPCAOr2NxX5UwJb9hJLGicA2FiYX8l42Bo0ep7MaCSd4DWY2iY-J4nnVUKL4-Rvk731yD65Y7uLqBnNWHQ"/>
 
             </div>
 
@@ -156,12 +155,12 @@
 
 </section>
 
-<!-- SERVICIOS -->
+<!-- Servicios -->
 <section class="py-24 bg-gray-50">
 
     <div class="max-w-[1280px] mx-auto px-6 md:px-8">
 
-        <!-- HEADER -->
+        <!-- Header -->
         <div class="text-center mb-14">
             <h2 class="text-4xl font-bold text-[#1B365D]">
                 Servicios clave
@@ -171,10 +170,10 @@
             </p>
         </div>
 
-        <!-- GRID BENTO -->
+        <!-- Grid -->
         <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-6 md:h-[500px]">
 
-            <!-- CARD GRANDE -->
+            <!-- Tarjeta grande -->
             <div class="md:col-span-2 md:row-span-2 bg-white border border-gray-200 p-8 flex flex-col justify-between hover:border-[#1B365D] transition">
 
                 <div>
@@ -204,7 +203,7 @@
 
             </div>
 
-            <!-- CARD MEDIANA -->
+            <!-- Tarjeta Mediana -->
             <div class="md:col-span-2 bg-white border border-gray-200 p-6 flex items-center gap-5 hover:border-[#1B365D] transition">
 
                 <div class="w-12 h-12 bg-blue-50 text-[#1B365D] flex items-center justify-center rounded-lg">
@@ -225,7 +224,7 @@
 
             </div>
 
-            <!-- CARD PEQUEÑA -->
+            <!-- Tarjeta Pequeña -->
             <div class="bg-white border border-gray-200 p-6 flex flex-col hover:border-[#1B365D] transition">
 
                 <div class="w-10 h-10 bg-gray-100 text-[#1B365D] flex items-center justify-center rounded-lg mb-4">
@@ -244,7 +243,7 @@
 
             </div>
 
-            <!-- CARD PEQUEÑA -->
+            <!-- Tarjeta Pequeña -->
             <div class="bg-white border border-gray-200 p-6 flex flex-col hover:border-[#1B365D] transition">
 
                 <div class="w-10 h-10 bg-gray-100 text-[#1B365D] flex items-center justify-center rounded-lg mb-4">
@@ -269,7 +268,7 @@
 
 </section>
 
-<!-- BENEFICIOS -->
+<!-- Beneficios -->
 <section class="py-24 px-8">
 
     <div class="max-w-[1280px] mx-auto w-full">
@@ -282,13 +281,13 @@
             </div>
 
             <div class="text-center md:text-left max-w-xl mx-auto">
-<h2 class="text-4xl font-bold mb-10" style="color:#1B365D;">
-    ¿Por qué GovConnect?
-</h2>
+                <h2 class="text-4xl font-bold mb-10" style="color:#1B365D;">
+                    ¿Por qué GovConnect?
+                </h2>
 
-<div class="space-y-10 text-gray-600">
+            <div class="space-y-10 text-gray-600">
 
-    <!-- ITEM 1 -->
+    <!-- Item 1 -->
     <div class="flex items-start gap-4">
 
         <span class="material-symbols-outlined text-3xl mt-1" style="color:#1B365D;">
@@ -306,7 +305,7 @@
 
     </div>
 
-    <!-- ITEM 2 -->
+    <!-- Item 2 -->
     <div class="flex items-start gap-4">
 
         <span class="material-symbols-outlined text-3xl mt-1" style="color:#1B365D;">
@@ -324,7 +323,7 @@
 
     </div>
 
-    <!-- ITEM 3 -->
+    <!-- Item 3 -->
     <div class="flex items-start gap-4">
 
         <span class="material-symbols-outlined text-3xl mt-1" style="color:#1B365D;">

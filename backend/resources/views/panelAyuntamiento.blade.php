@@ -9,7 +9,7 @@
 
   <div class="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-12 pt-32 pb-20 space-y-10">
 
-    <!-- HEADER -->
+    <!-- Header -->
     <section class="space-y-6">
 
       <h1 class="text-3xl font-bold text-[#1B365D] px-2">
@@ -46,17 +46,17 @@
 
     </section>
 
-    <!-- MAP + STATS -->
+    <!-- Mapa y estadísticas -->
     <section class="grid grid-cols-1 lg:grid-cols-4 gap-6">
 
-      <!-- MAP -->
+      <!-- Mapa -->
       <div class="lg:col-span-3 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
 
         <div id="map" class="h-[520px] w-full z-0"></div>
 
       </div>
 
-      <!-- STATS -->
+      <!-- Estadísticas -->
       <aside class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-6">
 
         <h2 class="font-bold text-[#1B365D] text-lg">
@@ -88,7 +88,7 @@
         </div>
 
         <a href="{{ url('/reportar') }}"
-           class="block w-full bg-[#1B365D] hover:bg-[#152849] text-white py-3 rounded-xl text-center font-semibold transition">
+          class="block w-full bg-[#1B365D] hover:bg-[#152849] text-white py-3 rounded-xl text-center font-semibold transition">
           Reportar incidencia
         </a>
 
@@ -96,7 +96,7 @@
 
     </section>
 
-    <!-- TABLE -->
+    <!-- Tabla -->
     <section class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
 
       <div class="p-5 border-b bg-slate-50 flex items-center gap-2">
@@ -154,7 +154,7 @@
   </div>
 </main>
 
-<!-- MAP SCRIPT -->
+<!-- Script JS para el mapa interactivo -->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (!i.ubicacion) return;
 
-        // 🔥 intentamos parsear "lat, lng"
+        // Parser "lat, lng" para que salga el punto en el mapa
         const parts = i.ubicacion.split(',');
 
         if (parts.length !== 2) return;
@@ -208,7 +208,7 @@ document.addEventListener('DOMContentLoaded', function () {
         bounds.push([lat, lng]);
     });
 
-    // 🔥 ajustar mapa a todos los puntos
+    // Ajuste mapa a todos los puntos
     if (bounds.length > 0) {
         map.fitBounds(bounds, { padding: [30, 30] });
     }

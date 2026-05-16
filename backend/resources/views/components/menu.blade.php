@@ -1,6 +1,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
-<!-- BOTÓN MOBILE IZQUIERDO -->
+<!-- Botón Izquierdo -->
 <button
     id="menuBtn"
     class="fixed top-20 left-4 z-[10000] lg:hidden bg-white dark:bg-slate-800 w-11 h-11 rounded-lg shadow flex items-center justify-center"
@@ -8,7 +8,7 @@
     <span class="material-symbols-outlined">menu</span>
 </button>
 
-<!-- BOTÓN MOBILE DERECHO -->
+<!-- Boton Derecho -->
 <button
     id="rightMenuBtn"
     class="fixed top-20 right-4 z-[10000] lg:hidden bg-white dark:bg-slate-800 w-11 h-11 rounded-lg shadow flex items-center justify-center"
@@ -22,7 +22,7 @@
     class="fixed inset-0 bg-black/50 z-[9998] hidden lg:hidden"
 ></div>
 
-<!-- LEFT SIDEBAR (MENU) -->
+<!-- Left SideBar -->
 <aside
     id="sidebar"
     class="
@@ -196,7 +196,7 @@
 </aside>
 
 
-<!-- JAVASCRIPT -->
+<!-- Script JS para botones hamburguesa -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 

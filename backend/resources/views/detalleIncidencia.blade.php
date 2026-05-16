@@ -15,13 +15,13 @@
     </p>
   </div>
 
-  <!-- GRID -->
+  <!-- Grid -->
   <div class="grid lg:grid-cols-12 gap-6">
 
-    <!-- LEFT -->
+    <!-- Izq -->
     <div class="lg:col-span-8 space-y-6">
 
-      <!-- IMAGE -->
+      <!-- Imagen de la incidencia -->
       <div class="rounded-xl overflow-hidden border bg-white">
 
         @if($incidencia->fotografia)
@@ -54,7 +54,7 @@
 
       </div>
 
-      <!-- DESCRIPTION -->
+      <!-- Descripcion -->
       <div class="bg-white border rounded-xl p-6">
 
         <h2 class="text-xl font-bold text-[#1B365D] mb-3">
@@ -95,7 +95,7 @@
 
       </div>
 
-      <!-- UBICACION -->
+      <!-- Ubicación -->
       <div class="bg-white border rounded-xl overflow-hidden">
 
         <div class="p-4 border-b flex items-center gap-2 text-[#1B365D] font-semibold">
@@ -111,10 +111,10 @@
 
     </div>
 
-    <!-- RIGHT -->
+    <!-- Derecha -->
     <div class="lg:col-span-4 space-y-6">
 
-      <!-- ESTADO VISUAL -->
+      <!-- Estado Visual -->
       <div class="bg-white border rounded-xl p-5">
 
         <h2 class="font-bold text-[#1B365D] mb-4">
@@ -151,7 +151,7 @@
 
       </div>
 
-      <!-- INFO BOX -->
+      <!-- Box de info -->
       <div class="bg-white border rounded-xl p-5">
 
         <h2 class="font-bold text-[#1B365D] mb-3">
@@ -169,7 +169,7 @@
 
       </div>
 
-      <!-- VOLVER -->
+      <!-- Volver -->
       <a href="{{ url('/incidencias') }}"
         class="block w-full text-center bg-[#1B365D] text-white py-3 rounded-lg font-semibold hover:opacity-90 transition">
 
