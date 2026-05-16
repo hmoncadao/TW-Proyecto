@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Incidencia;
 use Illuminate\Support\Facades\Cache;
+use Carbon\Carbon;
 
 class MenuController extends Controller
 {
@@ -11,23 +12,18 @@ class MenuController extends Controller
     {
         return Cache::remember('menu_datos', 60, function () {
 
-            $hoy = now()->startOfDay();
-            $inicioMes = now()->startOfMonth();
+            $hoyInicio = Carbon::today()->startOfDay();
+            $hoyFin = Carbon::today()->endOfDay();
 
             return [
-                // hoy
-                'incidenciasHoy' => Incidencia::whereDate('created_at', $hoy)->count(),
+                'incidenciasHoy' => Incidencia::whereBetween('created_at', [$hoyInicio, $hoyFin])->count(),
 
-                // este mes REAL
-                'incidenciasMes' => Incidencia::where('created_at', '>=', $inicioMes)->count(),
+                'esteMes' => Incidencia::where('created_at', '>=', Carbon::now()->startOfMonth())->count(),
 
-                // total
                 'total' => Incidencia::count(),
 
-                // resueltas
                 'resueltas' => Incidencia::where('estado', 'Resuelta')->count(),
             ];
-
         });
     }
 }

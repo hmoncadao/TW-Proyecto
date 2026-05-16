@@ -98,73 +98,75 @@
     </form>
 
     <!-- TABLE -->
-    <section class="bg-white border border-slate-200 rounded-lg overflow-hidden shadow-sm">
+<section class="bg-white border border-slate-200 rounded-lg shadow-sm">
 
-        <div class="overflow-x-auto">
-            <table class="w-full text-left">
+    <div class="overflow-x-auto w-full">
 
-                <thead class="bg-slate-100">
-                    <tr>
-                        <th class="px-6 py-4">ID</th>
-                        <th class="px-6 py-4">Categoría</th>
-                        <th class="px-6 py-4">Título</th>
-                        <th class="px-6 py-4">Estado</th>
-                        <th class="px-6 py-4">Fecha</th>
-                        <th class="px-6 py-4 text-center">Detalle</th>
-                    </tr>
-                </thead>
+        <table class="w-full min-w-[900px] text-left">
 
-                <tbody class="divide-y divide-slate-200">
+            <thead class="bg-slate-100">
+                <tr>
+                    <th class="px-6 py-4 whitespace-nowrap">ID</th>
+                    <th class="px-6 py-4 whitespace-nowrap">Categoría</th>
+                    <th class="px-6 py-4 whitespace-nowrap">Título</th>
+                    <th class="px-6 py-4 whitespace-nowrap">Estado</th>
+                    <th class="px-6 py-4 whitespace-nowrap">Fecha</th>
+                    <th class="px-6 py-4 text-center whitespace-nowrap">Detalle</th>
+                </tr>
+            </thead>
 
-                @forelse($incidencias as $incidencia)
+            <tbody class="divide-y divide-slate-200">
 
-                    <tr class="hover:bg-slate-50">
-                        <td class="px-6 py-4 font-semibold">#{{ $incidencia->id }}</td>
-                        <td class="px-6 py-4">{{ $incidencia->categoria }}</td>
-                        <td class="px-6 py-4">{{ $incidencia->titulo }}</td>
+            @forelse($incidencias as $incidencia)
 
-                        <td class="px-6 py-4">
-                            @if($incidencia->estado === 'Pendiente')
-                                <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm">
-                                    Pendiente
-                                </span>
-                            @elseif($incidencia->estado === 'En Progreso')
-                                <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">
-                                    En Progreso
-                                </span>
-                            @else
-                                <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
-                                    Resuelta
-                                </span>
-                            @endif
-                        </td>
+                <tr class="hover:bg-slate-50">
+                    <td class="px-6 py-4 font-semibold whitespace-nowrap">#{{ $incidencia->id }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ $incidencia->categoria }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ $incidencia->titulo }}</td>
 
-                        <td class="px-6 py-4">
-                            {{ $incidencia->created_at }}
-                        </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        @if($incidencia->estado === 'Pendiente')
+                            <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-sm">
+                                Pendiente
+                            </span>
+                        @elseif($incidencia->estado === 'En Progreso')
+                            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">
+                                En Progreso
+                            </span>
+                        @else
+                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
+                                Resuelta
+                            </span>
+                        @endif
+                    </td>
 
-                        <td class="px-6 py-4 text-center">
-                            <a href="{{ url('/incidencias/' . $incidencia->id) }}" 
-                               class="text-[#1B365D] font-semibold hover:underline">
-                                Ver detalle
-                            </a>
-                        </td>
-                    </tr>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        {{ $incidencia->created_at }}
+                    </td>
 
-                @empty
-                    <tr>
-                        <td colspan="6" class="text-center py-6 text-slate-500">
-                            No hay incidencias
-                        </td>
-                    </tr>
-                @endforelse
+                    <td class="px-6 py-4 text-center whitespace-nowrap">
+                        <a href="{{ url('/incidencias/' . $incidencia->id) }}" 
+                           class="text-[#1B365D] font-semibold hover:underline">
+                            Ver detalle
+                        </a>
+                    </td>
+                </tr>
 
-                </tbody>
+            @empty
+                <tr>
+                    <td colspan="6" class="text-center py-6 text-slate-500">
+                        No hay incidencias
+                    </td>
+                </tr>
+            @endforelse
 
-            </table>
-        </div>
+            </tbody>
 
-    </section>
+        </table>
+
+    </div>
+
+</section>
 
 </div>
 

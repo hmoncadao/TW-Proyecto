@@ -134,87 +134,66 @@
 
 </aside>
 
-<!-- RIGHT SIDEBAR (DASHBOARD) -->
+@php($datos = app(\App\Http\Controllers\MenuController::class)::datos())
+
 <aside
     id="rightSidebar"
-    class="
-        bg-white dark:bg-slate-900
-        border-l border-t border-[#C4C7CF] dark:border-slate-700
-        fixed right-0 top-16 bottom-0
-        w-64
-        flex flex-col
-        z-[9999]
-
-        transform translate-x-full
-        transition-transform duration-300 ease-in-out
-
-        lg:translate-x-0
-    "
+    class="bg-white dark:bg-slate-900
+    border-l border-t border-[#C4C7CF] dark:border-slate-700
+    fixed right-0 top-16 bottom-0
+    w-64 flex flex-col z-[9999]
+    transform translate-x-full
+    transition-transform duration-300 ease-in-out
+    lg:translate-x-0"
 >
 
-    <!-- HEADER -->
     <div class="p-6 pt-16 lg:pt-6 border-b border-slate-100">
         <h2 class="text-lg font-black text-[#1B365D] uppercase tracking-wider">
-            Panel de información
+            Panel de Información
         </h2>
         <p class="text-xs text-slate-500 font-medium py-1">
             Estado del sistema
         </p>
     </div>
 
-    <!-- CONTENT -->
     <div class="flex-1 p-4 space-y-4 overflow-y-auto">
 
-        <!-- SISTEMA -->
         <div class="bg-green-50 rounded-lg p-3">
             <p class="text-xs text-slate-500">Sistema</p>
             <p class="text-sm font-bold text-green-600">Operativo</p>
         </div>
 
-        <!-- HOY -->
         <div class="bg-slate-50 rounded-lg p-3">
             <p class="text-xs text-slate-500">Incidencias hoy</p>
             <p class="text-lg font-bold text-[#1B365D]">
-                {{ $incidenciasHoy ?? 0 }}
+                {{ $datos['incidenciasHoy'] }}
             </p>
         </div>
 
-        <!-- MES -->
         <div class="bg-slate-50 rounded-lg p-3">
             <p class="text-xs text-slate-500">Este mes</p>
             <p class="text-lg font-bold text-[#1B365D]">
-                {{ $incidenciasMes ?? 0 }}
+                {{ $datos['esteMes'] }}
             </p>
         </div>
 
-        <!-- TOTAL -->
         <div class="bg-slate-50 rounded-lg p-3">
-            <p class="text-xs text-slate-500">Total incidencias</p>
+            <p class="text-xs text-slate-500">Total</p>
             <p class="text-lg font-bold text-[#1B365D]">
-                {{ $total ?? 0 }}
+                {{ $datos['total'] }}
             </p>
         </div>
 
-        <!-- RESUELTAS -->
         <div class="bg-slate-50 rounded-lg p-3">
             <p class="text-xs text-slate-500">% resueltas</p>
             <p class="text-lg font-bold text-green-600">
-                {{ ($total ?? 0) > 0 ? round((($resueltas ?? 0) / $total) * 100) : 0 }}%
-            </p>
-        </div>
-
-        <!-- ACTIVIDAD -->
-        <div class="bg-slate-50 rounded-lg p-3">
-            <p class="text-xs text-slate-500">Actividad</p>
-            <p class="text-sm text-slate-700">
-                +{{ $incidenciasHoy ?? 0 }} nuevas hoy
+                {{ $datos['resueltas'] }}
             </p>
         </div>
 
     </div>
 
 </aside>
-
 
 
 <!-- JAVASCRIPT -->

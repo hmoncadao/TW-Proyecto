@@ -15,7 +15,7 @@
         <nav class="flex flex-col sm:flex-row gap-4 sm:gap-8 items-center">
 
             <a class="text-[10px] sm:text-xs uppercase tracking-wider text-slate-500 hover:text-[#1B365D] flex items-center gap-2"
-               href="contacto.php">
+               href="/contacto">
                 <span class="material-symbols-outlined text-[16px]">mail</span>
                 Contacto
             </a>
