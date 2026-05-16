@@ -46,6 +46,7 @@
 </section>
 
 <!-- ACTIVIDAD -->
+<!-- ACTIVIDAD -->
 <section class="relative z-20 -mt-14 px-6 md:px-8 flex justify-center">
 
     <div class="w-full max-w-[1280px] flex justify-center">
@@ -60,23 +61,34 @@
                         <p class="font-bold text-lg" style="color:#1B365D;">
                             Actividad reciente
                         </p>
+
                         <p class="text-sm text-gray-500">
-                            Actualizado hace unos minutos
+                            Datos actualizados en tiempo real
                         </p>
                     </div>
 
                     <div class="flex gap-10 text-center items-center justify-center flex-1">
 
                         <div>
-                            <p class="text-3xl font-bold" style="color:#1B365D;">15</p>
-                            <p class="text-sm text-gray-500">Resueltas hoy</p>
+                            <p class="text-3xl font-bold" style="color:#1B365D;">
+                                {{ $resueltasHoy }}
+                            </p>
+
+                            <p class="text-sm text-gray-500">
+                                Resueltas hoy
+                            </p>
                         </div>
 
                         <div class="w-px h-10 bg-gray-200 hidden md:block"></div>
 
                         <div>
-                            <p class="text-3xl font-bold" style="color:#1B365D;">142</p>
-                            <p class="text-sm text-gray-500">Este mes</p>
+                            <p class="text-3xl font-bold" style="color:#1B365D;">
+                                {{ $esteMes }}
+                            </p>
+
+                            <p class="text-sm text-gray-500">
+                                Último mes
+                            </p>
                         </div>
 
                     </div>
@@ -88,7 +100,6 @@
         </div>
 
     </div>
-
 </section>
 
 <!-- ABOUT -->
