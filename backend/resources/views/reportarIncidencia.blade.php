@@ -8,7 +8,6 @@
 <div class="pt-20 pb-20 min-h-screen">
     <div class="max-w-[1280px] mx-auto px-6">
         
-        <!-- Encabezado de la página -->
         <div class="mb-8 pt-16 lg:pt-0">
             <h1 class="text-3xl font-bold text-[#1B365D] dark:text-blue-400 mb-2">
                 Reportar Incidencia
@@ -19,13 +18,10 @@
             </p>
         </div>
 
-        <!-- Contenido principal (Grid de 3 columnas como en el perfil) -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             
-            <!-- Barra lateral (Información y Soporte) -->
             <div class="lg:col-span-1 space-y-6">
                 
-                <!-- Tarjeta: Reporte Ciudadano (Fondo Azul oscuro) -->
                 <div class="bg-[#1B365D] rounded-lg border border-[#1B365D] p-8 text-white shadow-sm">
                     <h2 class="text-xl font-bold mb-4">Reporte Ciudadano</h2>
                     <p class="text-sm text-blue-100 mb-6">
@@ -50,7 +46,6 @@
                     </div>
                 </div>
 
-                <!-- Tarjeta: Canal de Soporte (Estilo Perfil) -->
                 <div class="bg-white dark:bg-slate-900 rounded-lg border border-[#C4C7CF] dark:border-slate-700 p-8 shadow-sm">
                     <h3 class="text-lg font-bold text-[#1B365D] dark:text-blue-400 mb-2">
                         Canal de Soporte
@@ -67,7 +62,6 @@
                 </div>
             </div>
 
-            <!-- Panel principal (Formulario) -->
             <div class="lg:col-span-2">
                 <div class="bg-white dark:bg-slate-900 rounded-lg border border-[#C4C7CF] dark:border-slate-700 p-8 shadow-sm">
                     
@@ -85,11 +79,9 @@
                         </div>
                     @endif
 
-                    <!-- INICIO DEL FORMULARIO -->
                     <form action="{{ route('incidencias.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
                         @csrf
 
-                        <!-- Fila: Título y Categoría -->
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="form-group">
                                 <label for="titulo" class="block text-sm font-bold text-[#1B365D] dark:text-blue-400 mb-2">
@@ -124,7 +116,6 @@
                             </div>
                         </div>
 
-                        <!-- Descripción -->
                         <div class="form-group">
                             <label for="descripcion" class="block text-sm font-bold text-[#1B365D] dark:text-blue-400 mb-2">
                                 Descripción <span class="text-red-500">*</span>
@@ -139,10 +130,8 @@
                             ></textarea>
                         </div>
 
-                        <!-- Fila: Ubicación y Fotografía -->
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             
-                            <!-- Ubicación -->
                             <div class="form-group flex flex-col">
                                 <label for="ubicacion" class="block text-sm font-bold text-[#1B365D] dark:text-blue-400 mb-2">
                                     Ubicación <span class="text-red-500">*</span>   
@@ -151,10 +140,18 @@
     
                                 <div id="mapa" class="w-full h-48 bg-slate-100 dark:bg-slate-800 rounded-lg border border-slate-300 dark:border-slate-600 z-0 relative mb-3"></div>
     
-                                    <input type="hidden" id="ubicacion" name="ubicacion" value="" required>
+                                <input 
+                                    type="text" 
+                                    id="ubicacion" 
+                                    name="ubicacion" 
+                                    value="" 
+                                    class="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white" 
+                                    readonly 
+                                    required 
+                                    placeholder="Buscando dirección..."
+                                >
                             </div>
 
-                            <!-- Fotografía -->
                             <div class="form-group flex flex-col">
                                 <label for="fotografia" class="block text-sm font-bold text-[#1B365D] dark:text-blue-400 mb-2">
                                     Fotografía <span class="text-red-500">*</span>
@@ -182,7 +179,6 @@
 
                         </div>
 
-                        <!-- Botones de Acción -->
                         <div class="flex flex-col md:flex-row gap-4 pt-6 border-t border-slate-200 dark:border-slate-700">
                             <button 
                                 type="submit" 
@@ -246,7 +242,25 @@
         const marker = L.marker([latInicial, lngInicial], {draggable: true}).addTo(map);
 
         function actualizarInput(lat, lng) {
-            document.getElementById('ubicacion').value = lat.toFixed(6) + ', ' + lng.toFixed(6);
+            // Ponemos un texto de carga mientras la API busca la calle
+            document.getElementById('ubicacion').value = "Buscando dirección...";
+            
+            // Buscamos la calle real a partir de las coordenadas
+            fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.display_name) {
+                        // Si encuentra la calle, la muestra en el input visible
+                        document.getElementById('ubicacion').value = data.display_name;
+                    } else {
+                        // Si hay error, pone las coordenadas para que no se quede vacío
+                        document.getElementById('ubicacion').value = lat.toFixed(6) + ', ' + lng.toFixed(6);
+                    }
+                })
+                .catch(error => {
+                    console.error("Error al geocodificar:", error);
+                    document.getElementById('ubicacion').value = lat.toFixed(6) + ', ' + lng.toFixed(6);
+                });
         }
 
         actualizarInput(latInicial, lngInicial);

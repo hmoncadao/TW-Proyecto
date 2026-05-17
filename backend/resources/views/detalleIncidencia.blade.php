@@ -161,6 +161,15 @@
         <div class="space-y-3 text-sm text-slate-600">
 
           <p><strong>ID:</strong> #{{ $incidencia->id }}</p>
+
+          <p><strong>Autor:</strong> 
+            @if($incidencia->user)
+              {{ $incidencia->user->email }}
+            @else
+              <span class="italic text-slate-400">Anónimo</span>
+            @endif
+          </p>
+
           <p><strong>Categoría:</strong> {{ $incidencia->categoria }}</p>
           <p><strong>Estado:</strong> {{ $incidencia->estado }}</p>
           <p><strong>Fecha:</strong> {{ $incidencia->created_at->format('d/m/Y') }}</p>
