@@ -112,6 +112,7 @@ class AuthController extends Controller
             'city' => $validated['city'],
             'postal_code' => $validated['postal_code'],
             'password' => $validated['password'],
+            'is_admin' => $request->has('is_admin') ? 1 : 0,
         ]);
 
         // 4. Iniciar sesión automáticamente con el usuario recién creado
