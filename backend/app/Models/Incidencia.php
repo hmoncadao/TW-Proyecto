@@ -9,5 +9,10 @@ class Incidencia extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['titulo', 'categoria', 'descripcion', 'ubicacion', 'fotografia', 'estado'];
+    protected $fillable = ['titulo', 'categoria', 'descripcion', 'ubicacion', 'fotografia', 'estado', 'user_id'];
+
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
+

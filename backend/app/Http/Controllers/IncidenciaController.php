@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Incidencia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IncidenciaController extends Controller
 {
@@ -28,6 +29,7 @@ class IncidenciaController extends Controller
             'descripcion' => $request->descripcion,
             'ubicacion' => $request->ubicacion,
             'fotografia' => $rutaFotografia,
+            'user_id' => Auth::id(),
         ]);
 
         return back()->with('success', '¡Su reporte ha sido enviado con éxito!' );

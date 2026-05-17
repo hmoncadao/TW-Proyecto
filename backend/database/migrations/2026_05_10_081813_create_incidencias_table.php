@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('ubicacion');
             $table->string('fotografia')->nullable();
             $table->string('estado')->default('Pendiente');
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null');
             $table->timestamps();
         });
     }

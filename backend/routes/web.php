@@ -30,6 +30,7 @@ Route::get('/reportar', function () {
 
 // Ruta POST para guardar la incidencia
 Route::post('/incidencias/guardar', [IncidenciaController::class, 'store'])->name('incidencias.store');
+
 Route::get('/panel', function () {
     return view('panelAyuntamiento'); 
 })->name('panel');
