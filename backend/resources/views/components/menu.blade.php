@@ -197,7 +197,7 @@
         <div class="bg-slate-50 rounded-lg p-3">
             <p class="text-xs text-slate-500">% resueltas</p>
             <p class="text-lg font-bold text-green-600">
-                {{ $datos['resueltas'] }}
+                {{ $datos['porcentajeResueltas'] }}%
             </p>
         </div>
 

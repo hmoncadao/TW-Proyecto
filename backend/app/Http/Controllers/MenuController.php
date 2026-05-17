@@ -15,14 +15,28 @@ class MenuController extends Controller
             $hoyInicio = Carbon::today()->startOfDay();
             $hoyFin = Carbon::today()->endOfDay();
 
+            $total = Incidencia::count();
+
+            $resueltas = Incidencia::where('estado', 'Resuelta')->count();
+
+            $porcentajeResueltas = $total > 0
+                ? round(($resueltas / $total) * 100)
+                : 0;
+
             return [
                 'incidenciasHoy' => Incidencia::whereBetween('created_at', [$hoyInicio, $hoyFin])->count(),
 
-                'esteMes' => Incidencia::where('created_at', '>=', Carbon::now()->startOfMonth())->count(),
+                'esteMes' => Incidencia::where(
+                    'created_at',
+                    '>=',
+                    Carbon::now()->startOfMonth()
+                )->count(),
 
-                'total' => Incidencia::count(),
+                'total' => $total,
 
-                'resueltas' => Incidencia::where('estado', 'Resuelta')->count(),
+                'resueltas' => $resueltas,
+
+                'porcentajeResueltas' => $porcentajeResueltas,
             ];
         });
     }

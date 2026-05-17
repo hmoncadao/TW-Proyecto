@@ -135,7 +135,7 @@
           <div class="flex items-center gap-3">
             <span class="w-3 h-3 rounded-full {{ $incidencia->estado == 'En Progreso' ? 'bg-blue-500' : 'bg-gray-300' }}"></span>
             <span class="{{ $incidencia->estado == 'En Progreso' ? 'text-blue-700 font-semibold' : '' }}">
-              En proceso
+              En progreso
             </span>
           </div>
 
