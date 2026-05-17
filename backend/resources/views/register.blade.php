@@ -213,6 +213,21 @@
                                 <p class="text-xs text-red-500 mt-1">{{ $message }}</p>
                             @enderror
                         </div>
+                        <div class="bg-blue-50 dark:bg-slate-800 p-4 rounded-lg border border-dashed border-[#1B365D] dark:border-slate-600">
+                            <label class="flex items-center gap-3 cursor-pointer">
+                                <input 
+                                    type="checkbox" 
+                                    name="is_admin" 
+                                    value="1" 
+                                    class="w-5 h-5 text-[#1B365D] border-gray-300 rounded focus:ring-[#1B365D]"
+                                >
+                                <div>
+                                    <span class="block text-sm font-bold text-[#1B365D] dark:text-blue-400">
+                                        Registrar como Administrador
+                                    </span>
+                                </div>
+                            </label>
+                        </div>
 
                         <!-- Aceptar términos -->
                         <div class="form-group flex items-start gap-3 @error('terms') bg-red-50 dark:bg-red-900/20 p-3 rounded @enderror">
