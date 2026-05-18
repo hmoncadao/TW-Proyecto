@@ -6,6 +6,8 @@ use App\Http\Controllers\IncidenciaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\PanelController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ContactoController;
 
 Route::get('/', [IndexController::class, 'index']);
 
@@ -37,6 +39,7 @@ Route::get('/panel', [PanelController::class, 'index'])->name('panel');
 Route::get('/contacto', function () {
     return view('contacto');
 })->name('contacto');
+Route::post('/contacto', [ContactoController::class, 'store'])->name('contacto.store');
 
 // Rutas de Perfil
 Route::get('/profile', function () {
@@ -56,4 +59,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/profile/update-personal', [ProfileController::class, 'updatePersonal'])->name('profile.update.personal');
     Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update.password');
     Route::post('/profile/update-notifications', [ProfileController::class, 'updateNotifications'])->name('profile.update.notifications');
+});
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/incidencias', [AdminController::class, 'index'])->name('incidencias');
+    Route::post('/incidencias/{id}/estado', [AdminController::class, 'updateEstado'])->name('incidencias.estado');
+    Route::delete('/incidencias/{id}', [AdminController::class, 'destroy'])->name('incidencias.destroy');
+    Route::delete('/mensajes/{id}', [AdminController::class, 'destroyMensaje'])->name('mensajes.destroy');
 });
