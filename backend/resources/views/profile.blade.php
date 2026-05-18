@@ -326,9 +326,9 @@
             </div>
 
             <!-- Barra lateral -->
-            <div class="lg:col-span-1">
+            <div class="lg:col-span-1 lg:sticky lg:top-20 lg:h-fit">
                 <!-- Actividad reciente -->
-                <div class="bg-white dark:bg-slate-900 rounded-lg border border-[#C4C7CF] dark:border-slate-700 p-6 mb-6 sticky top-20">
+                <div class="bg-white dark:bg-slate-900 rounded-lg border border-[#C4C7CF] dark:border-slate-700 p-6 mb-6">
                     <h3 class="text-lg font-bold text-[#1B365D] dark:text-blue-400 mb-4 flex items-center gap-2">
                         <span class="material-symbols-outlined">history</span>
                         Actividad Reciente

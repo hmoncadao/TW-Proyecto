@@ -8,6 +8,15 @@ use Illuminate\Support\Facades\Auth;
 
 class IncidenciaController extends Controller
 {
+    /**
+     * Mostrar la lista de todas las incidencias
+     */
+    public function index()
+    {
+        $incidencias = Incidencia::paginate(10);
+        return view('incidencias', compact('incidencias'));
+    }
+
     public function store(Request $request){
 
         $request->validate([
