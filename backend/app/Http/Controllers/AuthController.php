@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -25,18 +27,10 @@ class AuthController extends Controller
     /**
      * Procesar el login
      */
-    public function store(Request $request)
+    public function store(LoginRequest $request)
     {
         // Validar los datos
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|min:8',
-        ], [
-            'email.required' => 'El correo electrónico es obligatorio.',
-            'email.email' => 'El correo electrónico debe ser válido.',
-            'password.required' => 'La contraseña es obligatoria.',
-            'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
-        ]);
+        $credentials = $request->validated();
 
         // Intentar autenticar al usuario
         if (Auth::attempt($credentials)) {
@@ -52,7 +46,7 @@ class AuthController extends Controller
         return back()
             ->withInput($request->only('email'))
             ->withErrors([
-                'email' => 'Las credenciales no coinciden con nuestros registros.',
+                'password' => 'La contraseña debe ser válida',
             ]);
     }
 
@@ -73,31 +67,10 @@ class AuthController extends Controller
             ->with('success', 'Has cerrado sesión correctamente.');
     }
 
-    public function storeRegister(Request $request)
+    public function storeRegister(RegisterUserRequest $request)
     {
         // 1. Validar los datos
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'surname' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'phone' => 'required|string|max:20',
-            'address' => 'required|string|max:255',
-            'city' => 'required|string|max:100',
-            'postal_code' => 'required|string|max:20',
-            'password' => 'required|string|min:8|confirmed',
-            'is_admin' => 'nullable|accepted',
-            'terms' => 'required|accepted',
-        ], [
-            'name.required' => 'El nombre es obligatorio',
-            'surname.required' => 'Los apellidos son obligatorios',
-            'email.required' => 'El email es obligatorio',
-            'email.email' => 'El email debe ser válido',
-            'email.unique' => 'El email ya está registrado',
-            'password.required' => 'La contraseña es obligatoria',
-            'password.min' => 'La contraseña debe tener al menos 8 caracteres',
-            'password.confirmed' => 'Las contraseñas no coinciden',
-            'terms.required' => 'Debes aceptar los términos y condiciones',
-        ]);
+        $validated = $request->validated();
 
         // 2. Encriptar la contraseña por seguridad
         $validated['password'] = Hash::make($validated['password']);
