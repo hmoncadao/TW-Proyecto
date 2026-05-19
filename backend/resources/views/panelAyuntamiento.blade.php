@@ -117,7 +117,7 @@
             <td class="p-4 font-medium text-slate-700">
               {{ $inc->titulo ?? 'Incidencia' }}
             </td>
-            
+
             <td class="p-4">
                 <span class="
                     font-semibold px-3 py-1 rounded-full text-sm
@@ -132,8 +132,6 @@
                     {{ $inc->estado }}
                 </span>
             </td>
-
-    
 
             <td class="p-4 text-slate-600">
               {{ $inc->ubicacion }}
@@ -166,7 +164,7 @@
 
 <!-- Script JS para el mapa interactivo -->
 <script>
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
 
     const map = L.map('map', {
         scrollWheelZoom: true,
@@ -187,38 +185,55 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const bounds = [];
 
-    incidencias.forEach(i => {
+    // Función para convertir dirección -> coordenadas
+    async function geocodificar(direccion) {
 
-        if (!i.ubicacion) return;
+        const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(direccion)}`;
 
-        // Parser "lat, lng" para que salga el punto en el mapa
-        const parts = i.ubicacion.split(',');
+        const response = await fetch(url);
 
-        if (parts.length !== 2) return;
+        const data = await response.json();
 
-        const lat = parseFloat(parts[0].trim());
-        const lng = parseFloat(parts[1].trim());
+        if (data.length === 0) return null;
 
-        if (isNaN(lat) || isNaN(lng)) return;
+        return {
+            lat: parseFloat(data[0].lat),
+            lng: parseFloat(data[0].lon)
+        };
+    }
 
-        const marker = L.circleMarker([lat, lng], {
-            radius: 8,
-            color: color(i.estado),
-            fillColor: color(i.estado),
-            fillOpacity: 0.9,
-            weight: 2
-        })
-        .addTo(map)
-        .bindPopup(`
-            <b>${i.titulo ?? 'Incidencia'}</b><br>
-            ${i.estado}<br>
-            <small>${i.ubicacion}</small>
-        `);
+    for (const i of incidencias) {
 
-        bounds.push([lat, lng]);
-    });
+        if (!i.ubicacion) continue;
 
-    // Ajuste mapa a todos los puntos
+        try {
+
+            const coords = await geocodificar(i.ubicacion);
+
+            if (!coords) continue;
+
+            const marker = L.circleMarker([coords.lat, coords.lng], {
+                radius: 8,
+                color: color(i.estado),
+                fillColor: color(i.estado),
+                fillOpacity: 0.9,
+                weight: 2
+            })
+            .addTo(map)
+            .bindPopup(`
+                <b>${i.titulo ?? 'Incidencia'}</b><br>
+                ${i.estado}<br>
+                <small>${i.ubicacion}</small>
+            `);
+
+            bounds.push([coords.lat, coords.lng]);
+
+        } catch (error) {
+            console.error('Error geocodificando:', i.ubicacion, error);
+        }
+    }
+
+    // Ajustar mapa a todos los puntos
     if (bounds.length > 0) {
         map.fitBounds(bounds, { padding: [30, 30] });
     }
@@ -229,5 +244,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
 });
 </script>
-
 @endsection
