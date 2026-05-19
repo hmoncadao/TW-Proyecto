@@ -14,9 +14,20 @@
 
             @auth
 
-                <span class="text-xs md:text-sm font-medium text-slate-700 dark:text-slate-300">
-                    {{ auth()->user()->name }}
-                </span>
+                <div class="flex items-center gap-2">
+                    <span class="text-xs md:text-sm font-medium text-slate-700 dark:text-slate-300">
+                        {{ auth()->user()->name }}
+                    </span>
+                    @if(auth()->user()->isAdmin())
+                        <span class="text-xs font-bold bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 px-2 py-1 rounded-full">
+                            Admin
+                        </span>
+                    @else
+                        <span class="text-xs font-bold bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 px-2 py-1 rounded-full">
+                            Usuario Normal
+                        </span>
+                    @endif
+                </div>
 
                 <a
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
@@ -30,6 +41,10 @@
                 </form>
 
             @else
+
+                <span class="text-xs font-bold bg-gray-100 dark:bg-gray-900/30 text-gray-700 dark:text-gray-400 px-2 py-1 rounded-full">
+                    No identificado
+                </span>
 
                 <a href="{{ route('login.show') }}"
                 class="px-3 py-1.5 md:px-6 md:py-2 text-sm md:text-base bg-[#1B365D] text-white font-label-bold rounded-lg hover:opacity-90 active:scale-[0.98] transition-all">

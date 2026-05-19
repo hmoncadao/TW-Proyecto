@@ -75,7 +75,7 @@ class AuthController extends Controller
 
     public function storeRegister(Request $request)
     {
-        // 1. Validar los datos (¡La validación de tu compañero estaba perfecta!)
+        // 1. Validar los datos
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'surname' => 'required|string|max:255',
@@ -85,6 +85,7 @@ class AuthController extends Controller
             'city' => 'required|string|max:100',
             'postal_code' => 'required|string|max:20',
             'password' => 'required|string|min:8|confirmed',
+            'is_admin' => 'nullable|accepted',
             'terms' => 'required|accepted',
         ], [
             'name.required' => 'El nombre es obligatorio',
@@ -101,8 +102,10 @@ class AuthController extends Controller
         // 2. Encriptar la contraseña por seguridad
         $validated['password'] = Hash::make($validated['password']);
 
-        // 3. Guardar el usuario en la base de datos (TiDB)
-        // Filtramos 'terms' porque no existe como columna en la base de datos
+        // 3. Determinar el rol del usuario
+        $role = $request->has('is_admin') ? 'admin' : 'usuario';
+
+        // 4. Guardar el usuario en la base de datos (TiDB)
         $user = User::create([
             'name' => $validated['name'],
             'surname' => $validated['surname'],
@@ -112,13 +115,14 @@ class AuthController extends Controller
             'city' => $validated['city'],
             'postal_code' => $validated['postal_code'],
             'password' => $validated['password'],
-            'is_admin' => $request->has('is_admin') ? 1 : 0,
+            'role' => $role,
+            'email_verified_at' => now(),
         ]);
 
-        // 4. Iniciar sesión automáticamente con el usuario recién creado
+        // 5. Iniciar sesión automáticamente con el usuario recién creado
         Auth::login($user);
 
-        // 5. Redirigir al perfil del usuario
+        // 6. Redirigir al perfil del usuario
         return redirect('/profile')->with('success', 'Cuenta creada exitosamente');
     }
 }

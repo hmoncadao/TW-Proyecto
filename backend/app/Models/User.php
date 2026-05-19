@@ -28,7 +28,7 @@ class User extends Authenticatable
         'city',
         'postal_code',
         'password',
-        'is_admin', 
+        'role',
     ];
 
     /**
@@ -51,11 +51,22 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
-            'is_admin' => 'boolean',
         ];
     }
+
+    /**
+     * Verificar si el usuario es administrador
+     */
     public function isAdmin(): bool
     {
-        return (bool) $this->is_admin;
+        return $this->role === 'admin';
+    }
+
+    /**
+     * Verificar si el usuario es usuario normal
+     */
+    public function isNormalUser(): bool
+    {
+        return $this->role === 'usuario';
     }
 }
