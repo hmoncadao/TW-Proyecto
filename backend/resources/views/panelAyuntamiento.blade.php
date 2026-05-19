@@ -117,13 +117,23 @@
             <td class="p-4 font-medium text-slate-700">
               {{ $inc->titulo ?? 'Incidencia' }}
             </td>
-
-            <td class="p-4 font-semibold
-              @if($inc->estado == 'Pendiente') text-red-600
-              @elseif($inc->estado == 'En Progreso') text-blue-600
-              @else text-green-600 @endif">
-              {{ $inc->estado }}
+            
+            <td class="p-4">
+                <span class="
+                    font-semibold px-3 py-1 rounded-full text-sm
+                    @if($inc->estado == 'Pendiente')
+                        bg-red-100 text-red-700
+                    @elseif($inc->estado == 'En Progreso')
+                        bg-blue-100 text-blue-700
+                    @else
+                        bg-green-100 text-green-700
+                    @endif
+                ">
+                    {{ $inc->estado }}
+                </span>
             </td>
+
+    
 
             <td class="p-4 text-slate-600">
               {{ $inc->ubicacion }}
