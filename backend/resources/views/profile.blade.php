@@ -326,9 +326,9 @@
             </div>
 
             <!-- Barra lateral -->
-            <div class="lg:col-span-1">
+            <div class="lg:col-span-1 lg:sticky lg:top-20 lg:h-fit">
                 <!-- Actividad reciente -->
-                <div class="bg-white dark:bg-slate-900 rounded-lg border border-[#C4C7CF] dark:border-slate-700 p-6 mb-6 sticky top-20">
+                <div class="bg-white dark:bg-slate-900 rounded-lg border border-[#C4C7CF] dark:border-slate-700 p-6 mb-6">
                     <h3 class="text-lg font-bold text-[#1B365D] dark:text-blue-400 mb-4 flex items-center gap-2">
                         <span class="material-symbols-outlined">history</span>
                         Actividad Reciente
@@ -336,18 +336,13 @@
                     
                     <div class="space-y-4">
                         <div class="pb-4 border-b border-slate-200 dark:border-slate-700">
-                            <p class="text-sm font-bold text-slate-900 dark:text-white">Perfil actualizado</p>
-                            <p class="text-xs text-slate-500 dark:text-slate-400">Hace 2 horas</p>
-                        </div>
-
-                        <div class="pb-4 border-b border-slate-200 dark:border-slate-700">
-                            <p class="text-sm font-bold text-slate-900 dark:text-white">Contraseña cambiada</p>
-                            <p class="text-xs text-slate-500 dark:text-slate-400">Hace 5 días</p>
-                        </div>
-
-                        <div class="pb-4 border-b border-slate-200 dark:border-slate-700">
                             <p class="text-sm font-bold text-slate-900 dark:text-white">Cuenta creada</p>
-                            <p class="text-xs text-slate-500 dark:text-slate-400">1 enero 2024</p>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">{{ Auth::user()->created_at->format('d M Y') }}</p>
+                        </div>
+
+                        <div class="pb-4">
+                            <p class="text-sm font-bold text-slate-900 dark:text-white">Última actualización del perfil</p>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">{{ Auth::user()->updated_at->diffForHumans() }}</p>
                         </div>
                     </div>
                 </div>
@@ -362,17 +357,19 @@
                     <div class="space-y-3">
                         <div class="text-sm">
                             <p class="font-bold text-slate-900 dark:text-white">ID de Usuario</p>
-                            <p class="text-xs text-slate-600 dark:text-slate-400">12345</p>
+                            <p class="text-xs text-slate-600 dark:text-slate-400">{{ Auth::user()->id }}</p>
                         </div>
 
                         <div class="text-sm">
                             <p class="font-bold text-slate-900 dark:text-white">Estado</p>
-                            <p class="text-xs text-green-600 dark:text-green-400 font-bold">Verificado</p>
+                            <p class="text-xs @if(Auth::user()->email_verified_at) text-green-600 dark:text-green-400 @else text-amber-600 dark:text-amber-400 @endif font-bold">
+                                @if(Auth::user()->email_verified_at) Verificado @else Pendiente de verificación @endif
+                            </p>
                         </div>
 
                         <div class="text-sm">
                             <p class="font-bold text-slate-900 dark:text-white">Miembro desde</p>
-                            <p class="text-xs text-slate-600 dark:text-slate-400">1 enero 2024</p>
+                            <p class="text-xs text-slate-600 dark:text-slate-400">{{ Auth::user()->created_at->format('d M Y') }}</p>
                         </div>
 
                         <button class="w-full mt-4 px-4 py-2 bg-red-500 text-white font-bold rounded-lg hover:opacity-90 active:scale-95 transition-all text-sm">
