@@ -104,7 +104,7 @@
                     </div>
 
                     <div>
-                        <label class="block text-gray-700 font-medium mb-2 text-sm md:text-base">Mensaje<span class="text-red-500">*</span></label></label>
+                        <label class="block text-gray-700 font-medium mb-2 text-sm md:text-base">Mensaje <span class="text-red-500">*</span></label></label>
                         <textarea name="mensaje" rows="5" required
                             class="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm md:text-base focus:ring-2 focus:ring-[#1B365D]"></textarea>
                     </div>

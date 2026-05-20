@@ -24,10 +24,10 @@
                         {{ Auth::user()->email }}
                     </p>
                     <div class="flex flex-wrap gap-3 justify-center md:justify-start">
-                        <span class="text-sm font-bold text-white bg-[#1B365D] px-4 py-2 rounded-full">
+                        <span class="inline-flex items-center justify-center text-sm font-bold text-white bg-[#1B365D] px-4 py-2 rounded-full">
                             @if(Auth::user()->email_verified_at) Usuario verificado @else Pendiente de verificar @endif
                         </span>
-                        <span class="text-sm font-bold text-slate-600 bg-slate-200 dark:bg-slate-700 dark:text-slate-300 px-4 py-2 rounded-full">
+                        <span class="inline-flex items-center justify-center text-sm font-bold text-slate-600 bg-slate-200 dark:bg-slate-700 dark:text-slate-300 px-4 py-2 rounded-full">
                             Miembro desde {{ Auth::user()->created_at->format('Y') }}
                         </span>
                         @if(Auth::user()->isAdmin())
