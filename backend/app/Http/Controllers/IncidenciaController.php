@@ -24,7 +24,7 @@ class IncidenciaController extends Controller
             'categoria' => 'required|string',
             'descripcion' => 'required|string',
             'ubicacion' => 'required|string',
-            'fotografia' => 'required|image|mimes:jpeg,png,jpg|max:5000',
+            'fotografia' => 'nullable|image|mimes:jpeg,png,jpg|max:5000',
         ]);
 
         $rutaFotografia = null;

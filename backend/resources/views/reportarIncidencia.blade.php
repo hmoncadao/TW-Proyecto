@@ -154,7 +154,7 @@
 
                             <div class="form-group flex flex-col">
                                 <label for="fotografia" class="block text-sm font-bold text-[#1B365D] dark:text-blue-400 mb-2">
-                                    Fotografía <span class="text-red-500">*</span>
+                                    Fotografía 
                                 </label>
                                 <div class="flex-1 border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-lg bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex flex-col items-center justify-center relative cursor-pointer min-h-[200px] overflow-hidden">
                                     
