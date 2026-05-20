@@ -8,6 +8,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\PanelController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactoController;
+use App\Http\Controllers\ListaIncidenciaController;
 
 Route::get('/', [IndexController::class, 'index']);
 
@@ -53,6 +54,9 @@ Route::get('/incidencias', [IncidenciaController::class, 'index'])->name('incide
 Route::get('/detalle', function () {
     return view('detalleIncidencia');
 })->name('detalle');
+
+Route::get('/incidencias/{id}', [ListaIncidenciaController::class, 'show'])
+    ->name('incidencias.show');
 
 // Rutas protegidas de perfil
 Route::middleware('auth')->group(function () {

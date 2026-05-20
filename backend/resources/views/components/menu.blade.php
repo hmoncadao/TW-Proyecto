@@ -1,6 +1,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
-<!-- Botón Izquierdo -->
+<!-- BOTÓN IZQUIERDO -->
 <button
     id="menuBtn"
     class="fixed top-20 left-4 z-[10000] lg:hidden bg-white dark:bg-slate-800 w-11 h-11 rounded-lg shadow flex items-center justify-center"
@@ -8,7 +8,7 @@
     <span class="material-symbols-outlined">menu</span>
 </button>
 
-<!-- Boton Derecho -->
+<!-- BOTÓN DERECHO -->
 <button
     id="rightMenuBtn"
     class="fixed top-20 right-4 z-[10000] lg:hidden bg-white dark:bg-slate-800 w-11 h-11 rounded-lg shadow flex items-center justify-center"
@@ -22,7 +22,7 @@
     class="fixed inset-0 bg-black/50 z-[9998] hidden lg:hidden"
 ></div>
 
-<!-- Left SideBar -->
+<!-- LEFT SIDEBAR -->
 <aside
     id="sidebar"
     class="
@@ -51,16 +51,6 @@
 
     <nav class="flex-1 px-4 space-y-1 overflow-y-auto">
 
-        <a class="flex items-center gap-3 px-3 py-3 rounded-lg transition
-            text-slate-600 border-l-4 border-transparent
-            hover:text-[#1B365D] hover:font-bold
-            hover:bg-slate-50 hover:border-[#1B365D]"
-            href="/"
-        >
-            <span class="material-symbols-outlined">home</span>
-            <span class="text-sm">Página Principal</span>
-        </a>
-
         @auth
         <a class="flex items-center gap-3 px-3 py-3 rounded-lg transition
             text-slate-600 border-l-4 border-transparent
@@ -71,6 +61,7 @@
             <span class="material-symbols-outlined">account_circle</span>
             <span class="text-sm">Mi Perfil</span>
         </a>
+
         @if(Auth::user()->isAdmin())
         <a class="flex items-center gap-3 px-3 py-3 rounded-lg transition
             text-amber-700 border-l-4 border-transparent bg-amber-50
@@ -82,15 +73,17 @@
         </a>
         @endif
         @endauth
+
         <a class="flex items-center gap-3 px-3 py-3 rounded-lg transition
             text-slate-600 border-l-4 border-transparent
             hover:text-[#1B365D] hover:font-bold
             hover:bg-slate-50 hover:border-[#1B365D]"
-            href="/incidencias"
+            href="/"
         >
-            <span class="material-symbols-outlined">public</span>
-            <span class="text-sm">Incidencias</span>
+            <span class="material-symbols-outlined">home</span>
+            <span class="text-sm">Página Principal</span>
         </a>
+
         <a class="flex items-center gap-3 px-3 py-3 rounded-lg transition
             text-slate-600 border-l-4 border-transparent
             hover:text-[#1B365D] hover:font-bold
@@ -115,6 +108,16 @@
             text-slate-600 border-l-4 border-transparent
             hover:text-[#1B365D] hover:font-bold
             hover:bg-slate-50 hover:border-[#1B365D]"
+            href="/incidencias"
+        >
+            <span class="material-symbols-outlined">public</span>
+            <span class="text-sm">Incidencias</span>
+        </a>
+
+        <a class="flex items-center gap-3 px-3 py-3 rounded-lg transition
+            text-slate-600 border-l-4 border-transparent
+            hover:text-[#1B365D] hover:font-bold
+            hover:bg-slate-50 hover:border-[#1B365D]"
             href="/contacto"
         >
             <span class="material-symbols-outlined">mail</span>
@@ -125,7 +128,7 @@
             text-slate-600 border-l-4 border-transparent
             hover:text-[#1B365D] hover:font-bold
             hover:bg-slate-50 hover:border-[#1B365D]"
-            href="#"
+            href="{{ asset('pdf/como_se_hizo.pdf') }}" target="_blank"
         >
             <span class="material-symbols-outlined">description</span>
             <span class="text-sm">Cómo se hizo</span>
@@ -133,26 +136,24 @@
 
     </nav>
 
-    <div class="p-4 mt-auto border-t border-slate-100">
-        <a class="flex items-center gap-3 px-3 py-3 text-slate-600 hover:bg-slate-50 rounded-lg transition" href="#">
-            <span class="material-symbols-outlined">settings</span>
-            <span class="text-sm">Settings</span>
-        </a>
-    </div>
-
 </aside>
 
+<!-- RIGHT SIDEBAR -->
 @php($datos = app(\App\Http\Controllers\MenuController::class)::datos())
 
 <aside
     id="rightSidebar"
-    class="bg-white dark:bg-slate-900
-    border-l border-t border-[#C4C7CF] dark:border-slate-700
-    fixed right-0 top-16 bottom-0
-    w-64 flex flex-col z-[9999]
-    transform translate-x-full
-    transition-transform duration-300 ease-in-out
-    lg:translate-x-0"
+    class="
+        bg-white dark:bg-slate-900
+        border-l border-t border-[#C4C7CF] dark:border-slate-700
+        fixed right-0 top-16 bottom-0
+        w-64 flex flex-col z-[9999]
+
+        transform translate-x-full
+        transition-transform duration-300 ease-in-out
+
+        lg:translate-x-0
+    "
 >
 
     <div class="p-6 pt-16 lg:pt-6 border-b border-slate-100">
@@ -203,8 +204,7 @@
 
 </aside>
 
-
-<!-- Script JS para botones hamburguesa -->
+<!-- SCRIPT -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 

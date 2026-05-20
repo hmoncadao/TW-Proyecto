@@ -36,10 +36,10 @@
                     </div>
                     <div>
                         <p class="text-sm text-gray-500 mb-1">Correo de contacto</p>
-                        <a href="mailto:Ayuntamiento@gmail.es"
+                        <a href="mailto:ayuntamiento@govconnect.es"
                            class="text-lg font-semibold text-[#1B365D] hover:underline flex items-center gap-2">
                             <span class="material-symbols-outlined text-base">mail</span>
-                            Ayuntamiento@gmail.es
+                            ayuntamiento@govconnect.es
                         </a>
                     </div>
                     <div>

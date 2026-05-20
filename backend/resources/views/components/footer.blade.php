@@ -21,7 +21,7 @@
             </a>
 
             <a class="text-[10px] sm:text-xs uppercase tracking-wider text-slate-500 hover:text-[#1B365D] flex items-center gap-2"
-            href="como_se_hizo.pdf">
+            href="{{ asset('pdf/como_se_hizo.pdf') }}" target="_blank">
                 <span class="material-symbols-outlined text-[16px]">description</span>
                 Cómo se hizo
             </a>
