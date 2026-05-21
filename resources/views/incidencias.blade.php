@@ -22,9 +22,9 @@
 
             <!-- Buscador -->
             <div class="md:col-span-2 flex flex-col gap-2">
-                <label class="text-sm font-semibold text-slate-600">Búsqueda</label>
+                <label for="search" class="text-sm font-semibold text-slate-600">Búsqueda</label>
 
-                <input type="text" name="search"
+                <input id="search" type="text" name="search"
                     value="{{ request('search') }}"
                     placeholder="Buscar por ID o descripción..."
                     class="w-full px-3 py-3 border rounded-lg focus:ring-2 focus:ring-[#1B365D]">
@@ -32,7 +32,7 @@
 
             <!-- Estado -->
             <div class="flex flex-col gap-2">
-                <label class="text-sm font-semibold text-slate-600">Estado</label>
+                <label for="estado" class="text-sm font-semibold text-slate-600">Estado</label>
 
                 <select name="estado"
                     class="w-full px-3 py-3 border rounded-lg focus:ring-2 focus:ring-[#1B365D]">
@@ -45,7 +45,7 @@
 
             <!-- Categoría -->
             <div class="flex flex-col gap-2">
-                <label class="text-sm font-semibold text-slate-600">Categoría</label>
+                <label for="categoria" class="text-sm font-semibold text-slate-600">Categoría</label>
 
                 <select name="categoria"
                     class="w-full px-3 py-3 border rounded-lg focus:ring-2 focus:ring-[#1B365D]">
@@ -59,7 +59,7 @@
             <!-- Mes + Año -->
             <div class="md:col-span-2 grid grid-cols-2 gap-2">
                 
-                <select name="mes"
+                <select id="mes" name="mes"
                     class="w-full px-3 py-3 border rounded-lg focus:ring-2 focus:ring-[#1B365D]">
                     <option value="">Mes</option>
                     @for ($i = 1; $i <= 12; $i++)
@@ -67,7 +67,7 @@
                     @endfor
                 </select>
 
-                <select name="anio"
+                <select id="año" name="anio"
                     class="w-full px-3 py-3 border rounded-lg focus:ring-2 focus:ring-[#1B365D]">
                     <option value="">Año</option>
                     @for ($i = date('Y'); $i >= 2020; $i--)
@@ -106,12 +106,12 @@
 
                 <thead class="bg-slate-100">
                     <tr>
-                        <th class="px-6 py-4 whitespace-nowrap">ID</th>
-                        <th class="px-6 py-4 whitespace-nowrap">Categoría</th>
-                        <th class="px-6 py-4 whitespace-nowrap">Título</th>
-                        <th class="px-6 py-4 whitespace-nowrap">Estado</th>
-                        <th class="px-6 py-4 whitespace-nowrap">Fecha</th>
-                        <th class="px-6 py-4 text-center whitespace-nowrap">Detalle</th>
+                        <th scope="col" class="px-6 py-4 whitespace-nowrap">ID</th>
+                        <th scope="col" class="px-6 py-4 whitespace-nowrap">Categoría</th>
+                        <th scope="col" class="px-6 py-4 whitespace-nowrap">Título</th>
+                        <th scope="col" class="px-6 py-4 whitespace-nowrap">Estado</th>
+                        <th scope="col" class="px-6 py-4 whitespace-nowrap">Fecha</th>
+                        <th scope="col" class="px-6 py-4 text-center whitespace-nowrap">Detalle</th>
                     </tr>
                 </thead>
 
@@ -130,11 +130,11 @@
                                     Pendiente
                                 </span>
                             @elseif($incidencia->estado === 'En Progreso')
-                            <span class="inline-block bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm whitespace-nowrap">
+                            <span class="sr-only" class="inline-block bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm whitespace-nowrap">
                                 En Progreso
                             </span>
                             @else
-                                <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
+                                <span class="sr-only" class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
                                     Resuelta
                                 </span>
                             @endif
@@ -145,7 +145,7 @@
                         </td>
 
                         <td class="px-6 py-4 text-center whitespace-nowrap">
-                            <a href="{{ url('/incidencias/' . $incidencia->id) }}" 
+                            <a aria-label="Ver detalle de incidencia {{ $incidencia->id }}" href="{{ url('/incidencias/' . $incidencia->id) }}" 
                             class="text-[#1B365D] font-semibold hover:underline">
                                 Ver detalle
                             </a>
@@ -154,7 +154,7 @@
 
                 @empty
                     <tr>
-                        <td colspan="6" class="text-center py-6 text-slate-500">
+                        <td colspan="6" role="status" aria-live="polite" class="text-center py-6 text-slate-500">
                             No hay incidencias
                         </td>
                     </tr>

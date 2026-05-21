@@ -2,7 +2,7 @@
 
 @section('content')
 
-<main class="bg-background text-on-background min-h-screen">
+<main id="main-content" class="bg-background text-on-background min-h-screen">
 
 <section class="relative h-[650px] flex items-center justify-center overflow-hidden">
 
@@ -22,7 +22,7 @@
                 Tu ciudad, <span class="text-white/80">conectada y eficiente</span>
             </h1>
 
-            <p class="text-white/80 text-lg mb-8">
+            <p class="text-white opacity-90 text-lg mb-8">
                 Participa activamente en la mejora de tu municipio.
             </p>
 
@@ -33,7 +33,7 @@
                     Reportar incidencia
                 </a>
 
-                <a href="/panel"
+                <a aria-label="Ir a panel de servicios" href="/panel "
                 class="inline-block bg-white text-primary px-6 py-3 rounded-xl font-semibold shadow-lg hover:scale-105 transition">
                     Explorar servicios
                 </a>
@@ -111,7 +111,7 @@
             <!-- Texto de intro -->
             <div class="md:col-span-7">
 
-                <span class="inline-block text-xs font-semibold tracking-[0.2em] uppercase text-[#1B365D]/70 mb-3">
+                <span aria-hidden="true" class="inline-block text-xs font-semibold tracking-[0.2em] uppercase text-[#1B365D]/70 mb-3">
                     Compromiso ciudadano
                 </span>
 
@@ -144,7 +144,7 @@
             <!-- Imagen -->
             <div class="md:col-span-5 flex justify-center">
 
-                <img class="rounded-2xl shadow-xl border border-gray-100 w-full max-w-md md:max-w-lg object-cover"
+                <img alt="Vista del Ayuntamiento" class="rounded-2xl shadow-xl border border-gray-100 w-full max-w-md md:max-w-lg object-cover"
                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLPH-JxU-Vv_6_Gl3B5XUAfpYlUkFowPLGzjeTt862E6BbmRQYW1NPnsmXiaN82r3xaJRq3RkQlh5eUf6SHCZI5Ic6JwQCDBA7AuFEKvVGR46X74acLHIWLEcaaKQScHNQpNoCvCOIoX15SGVd9D_VnUcWg55gcoX6oiQWKza7UnYTU_en2ZqT-A-vAPCAOr2NxX5UwJb9hJLGicA2FiYX8l42Bo0ep7MaCSd4DWY2iY-J4nnVUKL4-Rvk731yD65Y7uLqBnNWHQ"/>
 
             </div>
@@ -179,12 +179,12 @@
                 <div>
 
                     <div class="w-14 h-14 bg-[#1B365D] text-white flex items-center justify-center mb-6 rounded-lg">
-                        <span class="material-symbols-outlined text-3xl">
+                        <span aria-hidden="true" class="material-symbols-outlined text-3xl">
                             campaign
                         </span>
                     </div>
 
-                    <a href="/reportar" class="text-2xl font-bold text-[#1B365D] mb-4 hover:underline py-24">
+                    <a href="/reportar" aria-label="Ir a la página de reportar incidencia" class="text-2xl font-bold text-[#1B365D] mb-4 hover:underline py-24">
                         Reporte de incidencias
                     </a>
 
@@ -196,7 +196,7 @@
 
                 <a href="/reportar" class="mt-8 text-[#1B365D] font-semibold flex items-center gap-2 hover:gap-3 transition">
                     Iniciar reporte
-                    <span class="material-symbols-outlined">
+                    <span aria-hidden="true" class="material-symbols-outlined">
                         arrow_forward
                     </span>
                 </a>
@@ -207,7 +207,7 @@
             <div class="md:col-span-2 bg-white border border-gray-200 p-6 flex items-center gap-5 hover:border-[#1B365D] transition">
 
                 <div class="w-12 h-12 bg-blue-50 text-[#1B365D] flex items-center justify-center rounded-lg">
-                    <span class="material-symbols-outlined">
+                    <span aria-hidden="true" class="material-symbols-outlined">
                         bar_chart
                     </span>
                 </div>
@@ -228,7 +228,7 @@
             <div class="bg-white border border-gray-200 p-6 flex flex-col hover:border-[#1B365D] transition">
 
                 <div class="w-10 h-10 bg-gray-100 text-[#1B365D] flex items-center justify-center rounded-lg mb-4">
-                    <span class="material-symbols-outlined">
+                    <span aria-hidden="true" class="material-symbols-outlined">
                         contacts
                     </span>
                 </div>
@@ -247,7 +247,7 @@
             <div class="bg-white border border-gray-200 p-6 flex flex-col hover:border-[#1B365D] transition">
 
                 <div class="w-10 h-10 bg-gray-100 text-[#1B365D] flex items-center justify-center rounded-lg mb-4">
-                    <span class="material-symbols-outlined">
+                    <span aria-hidden="true" class="material-symbols-outlined">
                         support_agent
                     </span>
                 </div>
@@ -290,7 +290,7 @@
     <!-- Item 1 -->
     <div class="flex items-start gap-4">
 
-        <span class="material-symbols-outlined text-3xl mt-1" style="color:#1B365D;">
+        <span aria-hidden="true" class="material-symbols-outlined text-3xl mt-1" style="color:#1B365D;">
             bolt
         </span>
 
@@ -308,7 +308,7 @@
     <!-- Item 2 -->
     <div class="flex items-start gap-4">
 
-        <span class="material-symbols-outlined text-3xl mt-1" style="color:#1B365D;">
+        <span aria-hidden="true" class="material-symbols-outlined text-3xl mt-1" style="color:#1B365D;">
             location_on
         </span>
 
@@ -326,7 +326,7 @@
     <!-- Item 3 -->
     <div class="flex items-start gap-4">
 
-        <span class="material-symbols-outlined text-3xl mt-1" style="color:#1B365D;">
+        <span aria-hidden="true" class="material-symbols-outlined text-3xl mt-1" style="color:#1B365D;">
             visibility
         </span>
 

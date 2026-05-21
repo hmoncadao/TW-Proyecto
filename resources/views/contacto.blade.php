@@ -54,18 +54,18 @@
 
                     <div>
                         <p class="text-xs md:text-sm text-gray-500 mb-1">Correo de contacto</p>
-                        <a href="mailto:ayuntamiento@govconnect.es"
+                        <a aria-label="Enviar correo a ayuntamiento@govconnect.es" href="mailto:ayuntamiento@govconnect.es"
                            class="text-sm md:text-lg font-semibold text-[#1B365D] hover:underline flex items-center gap-2">
-                            <span class="material-symbols-outlined text-base">mail</span>
+                            <span aria-hidden="true" class="material-symbols-outlined text-base">mail</span>
                             ayuntamiento@govconnect.es
                         </a>
                     </div>
 
                     <div>
                         <p class="text-xs md:text-sm text-gray-500 mb-1">Teléfono</p>
-                        <a href="tel:+34958000000"
+                        <a aria-label="Llamar por teléfono a +34958000000" href="tel:+34958000000"
                            class="text-sm md:text-lg font-semibold text-[#1B365D] hover:underline flex items-center gap-2">
-                            <span class="material-symbols-outlined text-base">call</span>
+                            <span aria-hidden="true" class="material-symbols-outlined text-base">call</span>
                             +34 958 000 000
                         </a>
                     </div>
@@ -81,7 +81,7 @@
                 </h2>
 
                 @if(session('success'))
-                    <div class="bg-green-50 border border-green-300 text-green-800 rounded-xl px-4 py-3 mb-6 flex items-center gap-3 text-sm">
+                    <div role="alert" class="bg-green-50 border border-green-300 text-green-800 rounded-xl px-4 py-3 mb-6 flex items-center gap-3 text-sm">
                         <span class="material-symbols-outlined">check_circle</span>
                         {{ session('success') }}
                     </div>
@@ -91,25 +91,25 @@
                     @csrf
 
                     <div>
-                        <label class="block text-gray-700 font-medium mb-2 text-sm md:text-base">Nombre completo <span class="text-red-500">*</span></label></label>
-                        <input type="text" name="nombre" required
-                            class="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm md:text-base focus:ring-2 focus:ring-[#1B365D]">
+                        <label for="nombre" class="block text-gray-700 font-medium mb-2 text-sm md:text-base">Nombre completo <span class="text-red-500">*</span></label>
+                        <input id="nombre" type="text" name="nombre" autocomplete="name" required
+                            class="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-[#1B365D]">
 
                     </div>
 
                     <div>
-                        <label class="block text-gray-700 font-medium mb-2 text-sm md:text-base">Correo electrónico <span class="text-red-500">*</span></label></label>
-                        <input type="email" name="email" required
-                            class="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm md:text-base focus:ring-2 focus:ring-[#1B365D]">
+                        <label for="email" class="block text-gray-700 font-medium mb-2 text-sm md:text-base">Correo electrónico <span class="text-red-500">*</span></label>
+                        <input id="email" type="email" name="email" autocomplete="email" required
+                            class="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-[#1B365D]">
                     </div>
 
                     <div>
-                        <label class="block text-gray-700 font-medium mb-2 text-sm md:text-base">Mensaje <span class="text-red-500">*</span></label></label>
+                        <label for="mensaje" class="block text-gray-700 font-medium mb-2 text-sm md:text-base">Mensaje <span class="text-red-500">*</span></label>
                         <textarea name="mensaje" rows="5" required
-                            class="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm md:text-base focus:ring-2 focus:ring-[#1B365D]"></textarea>
+                            class="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-[#1B365D]"></textarea>
                     </div>
 
-                    <button type="submit"
+                    <button type="submit" aria-label="Enviar formulario de contacto"
                         class="w-full bg-[#1B365D] hover:bg-[#152b4a] text-white font-semibold py-3 md:py-4 rounded-xl transition">
                         Enviar mensaje
                     </button>

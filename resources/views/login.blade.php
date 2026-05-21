@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="pt-36 lg:pt-20 pb-20 min-h-screen">
+<main aria-label="Página de inicio de sesión" class="pt-36 lg:pt-20 pb-20 min-h-screen">
     <div class="max-w-[1280px] mx-auto px-6">
         <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
             

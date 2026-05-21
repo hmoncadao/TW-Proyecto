@@ -17,6 +17,7 @@
             Sesión de administrador
         </div>
     </div>
+
     <!-- ALERTAS -->
     @if(session('success'))
         <div class="bg-green-50 border border-green-300 text-green-800 rounded-lg px-5 py-4 flex items-center gap-3">
@@ -24,6 +25,7 @@
             {{ session('success') }}
         </div>
     @endif
+
     <!-- FILTROS -->
     <form method="GET" action="{{ route('admin.incidencias') }}"
           class="bg-white border border-slate-200 p-6 rounded-lg shadow-sm">
@@ -63,6 +65,7 @@
             </a>
         </div>
     </form>
+
     <!-- TABLA -->
     <div class="bg-white border border-slate-200 rounded-lg shadow-sm overflow-x-auto">
         <table class="w-full text-sm">
@@ -145,15 +148,18 @@
                 @endforelse
             </tbody>
         </table>
+        
         @if($incidencias->hasPages())
         <div class="px-6 py-4 border-t border-slate-100">
             {{ $incidencias->withQueryString()->links() }}
         </div>
         @endif
     </div>
+
     <p class="text-sm text-slate-500 -mt-4">
         Mostrando {{ $incidencias->count() }} de {{ $incidencias->total() }} incidencias
     </p>
+
     <!-- MENSAJES DE CONTACTO -->
     <div class="flex items-center gap-2 mt-4">
         <span aria-hidden="true" class="material-symbols-outlined">forum</span>
@@ -171,6 +177,7 @@
                     <th scope="col" class="px-4 py-3 text-center font-semibold">Eliminar</th>
                 </tr>
             </thead>
+            
             <tbody class="divide-y divide-slate-100">
                 @forelse($mensajes as $msg)
                 <tr class="hover:bg-slate-50 transition">

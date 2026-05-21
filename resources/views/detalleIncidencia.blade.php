@@ -2,7 +2,7 @@
 
 @section('content')
 
-<main class="max-w-6xl mx-auto px-6 pb-20 pt-32 sm:pt-28 lg:pt-24 space-y-8 min-h-screen">
+<main role="main" class="max-w-6xl mx-auto px-6 pb-20 pt-32 sm:pt-28 lg:pt-24 space-y-8 min-h-screen">
 
   <!-- TITLE -->
   <div>
@@ -29,7 +29,7 @@
           <img
             class="w-full h-[360px] object-cover"
             src="{{ asset('storage/' . $incidencia->fotografia) }}"
-            alt="Imagen incidencia"
+            alt="Imagen incidencia #{{ $incidencia->id }}"
           >
 
         @else
@@ -99,7 +99,7 @@
       <div class="bg-white border rounded-xl overflow-hidden">
 
         <div class="p-4 border-b flex items-center gap-2 text-[#1B365D] font-semibold">
-          <span class="material-symbols-outlined">location_on</span>
+          <span aria-hidden="true" class="material-symbols-outlined">location_on</span>
           Ubicación
         </div>
 
@@ -126,7 +126,7 @@
           <!-- PENDIENTE -->
           <div class="flex items-center gap-3">
             <span class="w-3 h-3 rounded-full {{ $incidencia->estado == 'Pendiente' ? 'bg-red-500' : 'bg-gray-300' }}"></span>
-            <span class="{{ $incidencia->estado == 'Pendiente' ? 'text-red-700 font-semibold' : '' }}">
+            <span class="sr-only {{ $incidencia->estado == 'Pendiente' ? 'text-red-700 font-semibold' : '' }}">
               Pendiente
             </span>
           </div>
@@ -134,7 +134,7 @@
           <!-- EN PROGRESO -->
           <div class="flex items-center gap-3">
             <span class="w-3 h-3 rounded-full {{ $incidencia->estado == 'En Progreso' ? 'bg-blue-500' : 'bg-gray-300' }}"></span>
-            <span class="{{ $incidencia->estado == 'En Progreso' ? 'text-blue-700 font-semibold' : '' }}">
+            <span class="sr-only {{ $incidencia->estado == 'En Progreso' ? 'text-blue-700 font-semibold' : '' }}">
               En progreso
             </span>
           </div>
@@ -142,7 +142,7 @@
           <!-- RESUELTA -->
           <div class="flex items-center gap-3">
             <span class="w-3 h-3 rounded-full {{ $incidencia->estado == 'Resuelta' ? 'bg-green-500' : 'bg-gray-300' }}"></span>
-            <span class="{{ $incidencia->estado == 'Resuelta' ? 'text-green-700 font-semibold' : '' }}">
+            <span class="sr-only {{ $incidencia->estado == 'Resuelta' ? 'text-green-700 font-semibold' : '' }}">
               Finalizado
             </span>
           </div>
@@ -180,7 +180,7 @@
 
       <!-- Volver -->
       <a href="{{ url('/incidencias') }}"
-        class="block w-full text-center bg-[#1B365D] text-white py-3 rounded-lg font-semibold hover:opacity-90 transition">
+        aria-label="Volver al listado de incidencias" class="block w-full text-center bg-[#1B365D] text-white py-3 rounded-lg font-semibold hover:opacity-90 transition">
 
         Volver al listado
 
