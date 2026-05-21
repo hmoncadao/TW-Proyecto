@@ -46,7 +46,7 @@
                         <!-- Contraseña -->
                         <div class="form-group">
                             <label for="password" class="block text-sm font-bold text-[#1B365D] dark:text-blue-400 mb-2">
-                                Contraseña <span class="text-red-500">*</span>
+                                Contraseñaaaaaaaaa <span class="text-red-500">*</span>
                             </label>
                             <input 
                                 type="password"
@@ -69,7 +69,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                 </svg>
                             </button>
-                            
+
                             @error('password')
                                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
