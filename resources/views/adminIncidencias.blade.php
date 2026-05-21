@@ -97,7 +97,7 @@
                     </td>
                     <td class="px-4 py-3">
                         @if($inc->estado === 'Pendiente')
-                            <span class="px-2 py-1 rounded-full text-xs font-bold bg-yellow-100 text-yellow-700">Pendiente</span>
+                            <span class="px-2 py-1 rounded-full text-xs font-bold bg-red-100 text-yellow-700">Pendiente</span>
                         @elseif($inc->estado === 'En Progreso')
                             <span class="px-2 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-700">En Progreso</span>
                         @else

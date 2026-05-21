@@ -8,12 +8,6 @@
         <!-- Encabezado del perfil -->
         <div class="bg-white dark:bg-slate-900 rounded-lg border border-[#C4C7CF] dark:border-slate-700 p-8 mb-6">
             <div class="flex flex-col md:flex-row items-center gap-6">
-                <!-- Foto de perfil -->
-                <div class="flex-shrink-0">
-                    <div class="w-32 h-32 rounded-full bg-gradient-to-br from-[#1B365D] to-slate-400 border-4 border-slate-200 dark:border-slate-700 flex items-center justify-center overflow-hidden">
-                        <span class="material-symbols-outlined text-white text-6xl">person</span>
-                    </div>
-                </div>
 
                 <!-- Información del usuario -->
                 <div class="flex-1 text-center md:text-left">

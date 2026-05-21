@@ -42,14 +42,7 @@ function active($route) {
     </div>
 
     <nav class="flex-1 px-4 space-y-1 overflow-y-auto">
-
         @auth
-        <a href="{{ route('profile') }}"
-           class="flex items-center gap-3 px-3 py-3 rounded-lg transition border-l-4 {{ active('profile') }}">
-            <span class="material-symbols-outlined">account_circle</span>
-            <span class="text-sm">Mi Perfil</span>
-        </a>
-
         @if(Auth::user()->isAdmin())
         <a href="{{ route('admin.incidencias') }}"
            class="flex items-center gap-3 px-3 py-3 rounded-lg transition border-l-4
@@ -58,6 +51,12 @@ function active($route) {
             <span class="text-sm">Panel Admin</span>
         </a>
         @endif
+
+        <a href="{{ route('profile') }}"
+           class="flex items-center gap-3 px-3 py-3 rounded-lg transition border-l-4 {{ active('profile') }}">
+            <span class="material-symbols-outlined">account_circle</span>
+            <span class="text-sm">Mi Perfil</span>
+        </a>
         @endauth
 
         <a href="/"

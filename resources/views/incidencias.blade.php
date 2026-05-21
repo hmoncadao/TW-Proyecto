@@ -130,9 +130,9 @@
                                     Pendiente
                                 </span>
                             @elseif($incidencia->estado === 'En Progreso')
-                                <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">
-                                    En Progreso
-                                </span>
+                            <span class="inline-block bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm whitespace-nowrap">
+                                En Progreso
+                            </span>
                             @else
                                 <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
                                     Resuelta
