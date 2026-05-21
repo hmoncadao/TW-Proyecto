@@ -372,9 +372,16 @@
                             <p class="text-xs text-slate-600 dark:text-slate-400">{{ Auth::user()->created_at->format('d M Y') }}</p>
                         </div>
 
-                        <button class="w-full mt-4 px-4 py-2 bg-red-500 text-white font-bold rounded-lg hover:opacity-90 active:scale-95 transition-all text-sm">
-                            Eliminar Cuenta
-                        </button>
+                        <form action="{{ route('profile.destroy') }}" method="POST"
+                            onsubmit="return confirm('¿Seguro que quieres eliminar tu cuenta? Esta acción no se puede deshacer.')">
+                            @csrf
+                            @method('DELETE')
+
+                            <button type="submit"
+                                class="w-full mt-4 px-4 py-2 bg-red-500 text-white font-bold rounded-lg hover:opacity-90 active:scale-95 transition-all text-sm">
+                                Eliminar Cuenta
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

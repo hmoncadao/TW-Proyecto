@@ -174,34 +174,31 @@
                                     type="password"
                                     id="password"
                                     name="password"
-                                    class="w-full px-4 py-2 pr-10 border rounded-lg"
-                                >
+                                    required
+                                    minlength="8"
+                                    placeholder="Mínimo 8 caracteres"
+                                    class="w-full px-4 py-2 pr-28 border @error('password') border-red-500 @else border-slate-300 dark:border-slate-600 @enderror rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#1B365D] focus:border-transparent"
+                                />
 
+                                <!-- Botón ver contraseña -->
                                 <button 
                                     type="button"
                                     onclick="togglePassword()"
                                     id="toggleBtn"
-                                    class="absolute right-3 top-2 text-gray-500 text-sm font-semibold"
+                                    class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm font-semibold"
                                 >
                                     Ver contraseña
                                 </button>
                             </div>
 
-                            <input 
-                                type="password"
-                                id="password"
-                                name="password"
-                                required
-                                minlength="8"
-                                placeholder="Mínimo 8 caracteres"
-                                class="w-full px-4 py-2 border @error('password') border-red-500 @else border-slate-300 dark:border-slate-600 @enderror rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#1B365D] focus:border-transparent"
-                            />
-                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">La contraseña debe tener al menos 8 caracteres</p>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                                La contraseña debe tener al menos 8 caracteres
+                            </p>
+
                             @error('password')
                                 <p class="text-xs text-red-500 mt-1">{{ $message }}</p>
                             @enderror
                         </div>
-
                         <!-- Confirmar contraseña -->
                         <div class="form-group">
                             <label for="password_confirmation" class="block text-sm font-bold text-[#1B365D] dark:text-blue-400 mb-2">

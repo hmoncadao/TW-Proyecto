@@ -68,6 +68,17 @@ class ProfileController extends Controller
 
         return back()->with('success', 'Contraseña actualizada correctamente.');
     }
+    
+    public function destroy()
+    {
+        $user = Auth::user();
+
+        Auth::logout();
+
+        $user->delete();
+
+        return redirect('/')->with('success', 'Cuenta eliminada correctamente.');
+    }
 
     /**
      * Actualizar preferencias de notificaciones

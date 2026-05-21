@@ -60,6 +60,10 @@ Route::get('/incidencias/{id}', [ListaIncidenciaController::class, 'show'])
 
 Route::get('/incidencias', [ListaIncidenciaController::class, 'index'])->name('incidencias');
 
+Route::delete('/profile/delete', [ProfileController::class, 'destroy'])
+    ->name('profile.destroy')
+    ->middleware('auth');
+    
 // Rutas protegidas de perfil
 Route::middleware('auth')->group(function () {
     Route::post('/profile/update-personal', [ProfileController::class, 'updatePersonal'])->name('profile.update.personal');

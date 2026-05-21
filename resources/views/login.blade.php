@@ -43,34 +43,27 @@
                             @enderror
                         </div>
 
-                        <!-- Contraseña -->
                         <div class="form-group">
                             <label for="password" class="block text-sm font-bold text-[#1B365D] dark:text-blue-400 mb-2">
                                 Contraseña <span class="text-red-500">*</span>
                             </label>
-                            <input 
-                                type="password"
-                                id="password"
-                                name="password"
-                                required
-                                minlength="8"
-                                placeholder="Tu contraseña"
-                                class="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#1B365D] focus:border-transparent @error('password') border-red-500 @enderror"
-                            />
 
                             <div class="relative">
                                 <input 
                                     type="password"
                                     id="password"
                                     name="password"
-                                    class="w-full px-4 py-2 pr-10 border rounded-lg"
-                                >
+                                    required
+                                    minlength="8"
+                                    placeholder="Tu contraseña"
+                                    class="w-full px-4 py-2 pr-28 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#1B365D] focus:border-transparent @error('password') border-red-500 @enderror"
+                                />
 
                                 <button 
                                     type="button"
                                     onclick="togglePassword()"
                                     id="toggleBtn"
-                                    class="absolute right-3 top-2 text-gray-500 text-sm font-semibold"
+                                    class="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-gray-500 font-semibold"
                                 >
                                     Ver contraseña
                                 </button>
