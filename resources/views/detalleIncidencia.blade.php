@@ -65,31 +65,31 @@
           {{ $incidencia->descripcion }}
         </p>
 
-        <div class="space-y-4 text-sm">
+        <div class="flex gap-3 mt-5 flex-wrap">
 
-          <!-- PENDIENTE -->
-          <div class="flex items-center gap-3">
-            <span class="w-3 h-3 rounded-full {{ $incidencia->estado == 'Pendiente' ? 'bg-red-500' : 'bg-gray-300' }}"></span>
-            <span class="{{ $incidencia->estado == 'Pendiente' ? 'text-red-700 font-semibold' : '' }}">
+          <span class="px-3 py-1 bg-gray-100 rounded-full text-sm">
+            {{ $incidencia->categoria }}
+          </span>
+
+          @if($incidencia->estado === 'Pendiente')
+
+            <span class="px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm font-semibold">
               Pendiente
             </span>
-          </div>
 
-          <!-- EN PROGRESO -->
-          <div class="flex items-center gap-3">
-            <span class="w-3 h-3 rounded-full {{ $incidencia->estado == 'En Progreso' ? 'bg-blue-500' : 'bg-gray-300' }}"></span>
-            <span class="{{ $incidencia->estado == 'En Progreso' ? 'text-blue-700 font-semibold' : '' }}">
-              En progreso
-            </span>
-          </div>
+          @elseif($incidencia->estado === 'En Progreso')
 
-          <!-- RESUELTA -->
-          <div class="flex items-center gap-3">
-            <span class="w-3 h-3 rounded-full {{ $incidencia->estado == 'Resuelta' ? 'bg-green-500' : 'bg-gray-300' }}"></span>
-            <span class="{{ $incidencia->estado == 'Resuelta' ? 'text-green-700 font-semibold' : '' }}">
-              Finalizado
+            <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold">
+              En Progreso
             </span>
-          </div>
+
+          @else
+
+            <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-semibold">
+              Resuelta
+            </span>
+
+          @endif
 
         </div>
 
@@ -126,7 +126,7 @@
           <!-- PENDIENTE -->
           <div class="flex items-center gap-3">
             <span class="w-3 h-3 rounded-full {{ $incidencia->estado == 'Pendiente' ? 'bg-red-500' : 'bg-gray-300' }}"></span>
-            <span class="sr-only {{ $incidencia->estado == 'Pendiente' ? 'text-red-700 font-semibold' : '' }}">
+            <span class="{{ $incidencia->estado == 'Pendiente' ? 'text-red-700 font-semibold' : '' }}">
               Pendiente
             </span>
           </div>
@@ -134,7 +134,7 @@
           <!-- EN PROGRESO -->
           <div class="flex items-center gap-3">
             <span class="w-3 h-3 rounded-full {{ $incidencia->estado == 'En Progreso' ? 'bg-blue-500' : 'bg-gray-300' }}"></span>
-            <span class="sr-only {{ $incidencia->estado == 'En Progreso' ? 'text-blue-700 font-semibold' : '' }}">
+            <span class="{{ $incidencia->estado == 'En Progreso' ? 'text-blue-700 font-semibold' : '' }}">
               En progreso
             </span>
           </div>
@@ -142,7 +142,7 @@
           <!-- RESUELTA -->
           <div class="flex items-center gap-3">
             <span class="w-3 h-3 rounded-full {{ $incidencia->estado == 'Resuelta' ? 'bg-green-500' : 'bg-gray-300' }}"></span>
-            <span class="sr-only {{ $incidencia->estado == 'Resuelta' ? 'text-green-700 font-semibold' : '' }}">
+            <span class="{{ $incidencia->estado == 'Resuelta' ? 'text-green-700 font-semibold' : '' }}">
               Finalizado
             </span>
           </div>
