@@ -21,7 +21,7 @@
              class="flex flex-col sm:flex-row gap-4 sm:gap-8 items-center">
 
             <a href="/contacto"
-               class="focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1B365D] focus-visible:rounded text-[10px] sm:text-xs uppercase tracking-wider text-slate-500 hover:text-[#1B365D] flex items-center gap-2">
+               class="focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1B365D] focus-visible:rounded text-[20px] sm:text-xs uppercase tracking-wider text-slate-500 hover:text-[#1B365D] flex items-center gap-2">
                 
                 <span class="material-symbols-outlined text-[16px]" aria-hidden="true">
                     mail
@@ -31,7 +31,7 @@
             </a>
 
             <a href="{{ asset('pdf/como_se_hizo.pdf') }}" target="_blank"
-               class="focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1B365D] focus-visible:rounded text-[10px] sm:text-xs uppercase tracking-wider text-slate-500 hover:text-[#1B365D] flex items-center gap-2">
+               class="focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1B365D] focus-visible:rounded text-[20px] sm:text-xs uppercase tracking-wider text-slate-500 hover:text-[#1B365D] flex items-center gap-2">
 
                 <span class="material-symbols-outlined text-[16px]" aria-hidden="true">
                     description
