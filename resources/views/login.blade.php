@@ -46,7 +46,7 @@
                         <!-- Contraseña -->
                         <div class="form-group">
                             <label for="password" class="block text-sm font-bold text-[#1B365D] dark:text-blue-400 mb-2">
-                                Contraseñaaaaaaaaa <span class="text-red-500">*</span>
+                                Contraseña <span class="text-red-500">*</span>
                             </label>
                             <input 
                                 type="password"
@@ -58,17 +58,23 @@
                                 class="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#1B365D] focus:border-transparent @error('password') border-red-500 @enderror"
                             />
 
-                            <button 
-                                type="button"
-                                onclick="togglePassword()"
-                                class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-700 dark:hover:text-white"
-                            >
-                                <!-- Icono ojo -->
-                                <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.964-7.178Z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                                </svg>
-                            </button>
+                            <div class="relative">
+                                <input 
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    class="w-full px-4 py-2 pr-10 border rounded-lg"
+                                >
+
+                                <button 
+                                    type="button"
+                                    onclick="togglePassword()"
+                                    id="toggleBtn"
+                                    class="absolute right-3 top-2 text-gray-500 text-sm font-semibold"
+                                >
+                                    Ver contraseña
+                                </button>
+                            </div>
 
                             @error('password')
                                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -106,4 +112,18 @@
     </div>
 </div>
 
+<script>
+function togglePassword() {
+    const input = document.getElementById('password');
+    const btn = document.getElementById('toggleBtn');
+
+    if (input.type === 'password') {
+        input.type = 'text';
+        btn.innerText = 'Ocultar contraseña';
+    } else {
+        input.type = 'password';
+        btn.innerText = 'Ver contraseña';
+    }
+}
+</script>
 @endsection

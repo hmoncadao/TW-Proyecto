@@ -168,6 +168,25 @@
                             <label for="password" class="block text-sm font-bold text-[#1B365D] dark:text-blue-400 mb-2">
                                 Contraseña <span class="text-red-500">*</span>
                             </label>
+
+                            <div class="relative">
+                                <input 
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    class="w-full px-4 py-2 pr-10 border rounded-lg"
+                                >
+
+                                <button 
+                                    type="button"
+                                    onclick="togglePassword()"
+                                    id="toggleBtn"
+                                    class="absolute right-3 top-2 text-gray-500 text-sm font-semibold"
+                                >
+                                    Ver contraseña
+                                </button>
+                            </div>
+
                             <input 
                                 type="password"
                                 id="password"
@@ -284,5 +303,20 @@
         </div>
     </div>
 </div>
+
+<script>
+function togglePassword() {
+    const input = document.getElementById('password');
+    const btn = document.getElementById('toggleBtn');
+
+    if (input.type === 'password') {
+        input.type = 'text';
+        btn.innerText = 'Ocultar contraseña';
+    } else {
+        input.type = 'password';
+        btn.innerText = 'Ver contraseña';
+    }
+}
+</script>
 
 @endsection

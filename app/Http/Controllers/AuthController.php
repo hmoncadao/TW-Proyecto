@@ -16,9 +16,9 @@ class AuthController extends Controller
      */
     public function show()
     {
-        // Si el usuario ya está autenticado, redirigirlo al panel
+        // Si el usuario ya está autenticado, redirigirlo index
         if (Auth::check()) {
-            return redirect()->route('panel');
+            return redirect()->route('/');
         }
 
         return view('login');
