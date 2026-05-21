@@ -5,14 +5,14 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<main class="min-h-screen bg-slate-100">
+<main aria-label="Panel del Ayuntamiento" class="min-h-screen bg-slate-100">
 
   <div class="max-w-[1280px] mx-auto px-6 sm:px-8 lg:px-12 pt-32 pb-20 space-y-10">
 
     <!-- Header -->
-    <section class="space-y-6">
+    <section aria-labelledby="titulo-panel" class="space-y-6">
 
-      <h1 class="text-3xl font-bold text-[#1B365D] px-2">
+      <h1 id="titulo-panel" class="text-3xl font-bold text-[#1B365D] px-2">
         Panel del Ayuntamiento
       </h1>
 
@@ -21,6 +21,7 @@
         <p class="text-slate-600 leading-relaxed">
           Esta plataforma es el centro de control de incidencias urbanas del municipio. 
           Aquí se recogen los avisos enviados por la ciudadanía, junto con su ubicación y el estado en el que se encuentran, todo actualizado en tiempo real.
+        </p>
 
         <p class="text-slate-600 leading-relaxed">
           El sistema ayuda a los equipos municipales a organizar y priorizar las incidencias para darles 
@@ -33,7 +34,7 @@
         </p>
         
 
-      <p class="mt-2 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-600 text-sm font-medium">
+      <p aria-live="polite" class="mt-2 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-600 text-sm font-medium">
           <span class="w-2 h-2 rounded-full bg-[#1B365D]"></span>
           Último mes:
           <span class="font-semibold text-[#1B365D]">
@@ -87,7 +88,7 @@
 
         </div>
 
-        <a href="{{ url('/reportar') }}"
+        <a aria-label= "Ir al formlario para reposrtar una incidencia" href="{{ url('/reportar') }}"
           class="block w-full bg-[#1B365D] hover:bg-[#152849] text-white py-3 rounded-xl text-center font-semibold transition">
           Reportar incidencia
         </a>
@@ -107,12 +108,12 @@
       </div>
 
       <table class="w-full text-sm">
-
+      
         <tbody class="divide-y divide-slate-100">
 
           @forelse($incidencias as $inc)
 
-          <tr class="hover:bg-slate-50 transition">
+          <tr aria-label="Incidencia" class="hover:bg-slate-50 transition">
 
             <td class="p-4 font-medium text-slate-700">
               {{ $inc->titulo ?? 'Incidencia' }}
@@ -133,11 +134,11 @@
                 </span>
             </td>
 
-            <td class="p-4 text-slate-600">
+            <td aria-label="Ubicacion" class="p-4 text-slate-600">
               {{ $inc->ubicacion }}
             </td>
 
-            <td class="p-4 text-right text-slate-400">
+            <td aria-label="Creacion" class="p-4 text-right text-slate-500">
               {{ $inc->created_at->diffForHumans() }}
             </td>
 
@@ -146,7 +147,7 @@
           @empty
 
           <tr>
-            <td colspan="4" class="p-6 text-center text-slate-400">
+            <td aria-label="Este mes" colspan="4" class="p-6 text-center text-slate-400">
               No hay incidencias este mes
             </td>
           </tr>
@@ -221,9 +222,11 @@ document.addEventListener('DOMContentLoaded', async function () {
             })
             .addTo(map)
             .bindPopup(`
-                <b>${i.titulo ?? 'Incidencia'}</b><br>
-                ${i.estado}<br>
-                <small>${i.ubicacion}</small>
+              <div role="dialog" aria-label="Detalle incidencia">
+                  <strong>${i.titulo ?? 'Incidencia'}</strong><br>
+                  Estado: ${i.estado}<br>
+                  Ubicación: ${i.ubicacion}
+              </div>
             `);
 
             bounds.push([coords.lat, coords.lng]);

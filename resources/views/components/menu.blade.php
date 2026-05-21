@@ -10,7 +10,7 @@ function active($route) {
 
 <!-- BOTÓN IZQUIERDO -->
 <button
-    id="menuBtn"
+    id="menuBtn" aria-label="Abrir menú principal"
     class="fixed top-20 left-4 z-[10000] lg:hidden bg-white dark:bg-slate-800 w-11 h-11 rounded-lg shadow flex items-center justify-center"
 >
     <span class="material-symbols-outlined">menu</span>
@@ -18,14 +18,14 @@ function active($route) {
 
 <!-- BOTÓN DERECHO -->
 <button
-    id="rightMenuBtn"
+    id="rightMenuBtn" aria-label="Abrir panel de información"
     class="fixed top-20 right-4 z-[10000] lg:hidden bg-white dark:bg-slate-800 w-11 h-11 rounded-lg shadow flex items-center justify-center"
 >
     <span class="material-symbols-outlined">dashboard</span>
 </button>
 
 <!-- OVERLAY -->
-<div id="overlay" class="fixed inset-0 bg-black/50 z-[9998] hidden lg:hidden"></div>
+<div aria-hidden="true" id="overlay" class="fixed inset-0 bg-black/50 z-[9998] hidden lg:hidden"></div>
 
 <!-- LEFT SIDEBAR -->
 <aside
@@ -47,45 +47,45 @@ function active($route) {
         <a href="{{ route('admin.incidencias') }}"
            class="flex items-center gap-3 px-3 py-3 rounded-lg transition border-l-4
            text-amber-700 bg-amber-50 hover:bg-amber-100 hover:border-amber-500 font-semibold">
-            <span class="material-symbols-outlined">verified_user</span>
+            <span aria-hidden="true" class="material-symbols-outlined">verified_user</span>
             <span class="text-sm">Panel Admin</span>
         </a>
         @endif
 
         <a href="{{ route('profile') }}"
            class="flex items-center gap-3 px-3 py-3 rounded-lg transition border-l-4 {{ active('profile') }}">
-            <span class="material-symbols-outlined">account_circle</span>
+            <span aria-hidden="true" class="material-symbols-outlined">account_circle</span>
             <span class="text-sm">Mi Perfil</span>
         </a>
         @endauth
 
         <a href="/"
            class="flex items-center gap-3 px-3 py-3 rounded-lg transition border-l-4 {{ request()->is('/') ? 'text-[#1B365D] font-bold bg-slate-50 border-[#1B365D]' : 'text-slate-600 border-transparent hover:text-[#1B365D] hover:font-bold hover:bg-slate-50 hover:border-[#1B365D]' }}">
-            <span class="material-symbols-outlined">home</span>
+            <span aria-hidden="true" class="material-symbols-outlined">home</span>
             <span class="text-sm">Página Principal</span>
         </a>
 
         <a href="/panel"
            class="flex items-center gap-3 px-3 py-3 rounded-lg transition border-l-4 {{ request()->is('panel*') ? 'text-[#1B365D] font-bold bg-slate-50 border-[#1B365D]' : 'text-slate-600 border-transparent hover:text-[#1B365D] hover:font-bold hover:bg-slate-50 hover:border-[#1B365D]' }}">
-            <span class="material-symbols-outlined">admin_panel_settings</span>
+            <span aria-hidden="true" class="material-symbols-outlined">admin_panel_settings</span>
             <span class="text-sm">Panel Ayuntamiento</span>
         </a>
 
         <a href="/reportar"
            class="flex items-center gap-3 px-3 py-3 rounded-lg transition border-l-4 {{ request()->is('reportar') ? 'text-[#1B365D] font-bold bg-slate-50 border-[#1B365D]' : 'text-slate-600 border-transparent hover:text-[#1B365D] hover:font-bold hover:bg-slate-50 hover:border-[#1B365D]' }}">
-            <span class="material-symbols-outlined">report_problem</span>
+            <span aria-hidden="true" class="material-symbols-outlined">report_problem</span>
             <span class="text-sm">Reportar incidencia</span>
         </a>
 
         <a href="/incidencias"
            class="flex items-center gap-3 px-3 py-3 rounded-lg transition border-l-4 {{ request()->is('incidencias') ? 'text-[#1B365D] font-bold bg-slate-50 border-[#1B365D]' : 'text-slate-600 border-transparent hover:text-[#1B365D] hover:font-bold hover:bg-slate-50 hover:border-[#1B365D]' }}">
-            <span class="material-symbols-outlined">public</span>
+            <span aria-hidden="true" class="material-symbols-outlined">public</span>
             <span class="text-sm">Incidencias</span>
         </a>
 
         <a href="/contacto"
            class="flex items-center gap-3 px-3 py-3 rounded-lg transition border-l-4 {{ request()->is('contacto') ? 'text-[#1B365D] font-bold bg-slate-50 border-[#1B365D]' : 'text-slate-600 border-transparent hover:text-[#1B365D] hover:font-bold hover:bg-slate-50 hover:border-[#1B365D]' }}">
-            <span class="material-symbols-outlined">mail</span>
+            <span aria-hidden="true" class="material-symbols-outlined">mail</span>
             <span class="text-sm">Contacto</span>
         </a>
 

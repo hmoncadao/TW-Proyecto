@@ -96,10 +96,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Sidebar -->
-            <div class="lg:col-span-1">
-                
             </div>
         </div>
     </div>

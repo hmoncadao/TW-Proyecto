@@ -16,7 +16,7 @@
             @endphp
 
             <div class="flex-shrink-0">
-                <div class="w-32 h-32 rounded-full bg-gradient-to-br from-[#1B365D] to-slate-500 flex items-center justify-center text-white text-5xl font-black shadow-lg border-4 border-white dark:border-slate-700">
+                <div aria-hidden="true" class="w-32 h-32 rounded-full bg-gradient-to-br from-[#1B365D] to-slate-500 flex items-center justify-center text-white text-5xl font-black shadow-lg border-4 border-white dark:border-slate-700">
                     {{ $initial }}
                 </div>
             </div>
@@ -47,10 +47,10 @@
 
                 <!-- Botones de acción -->
                 <div class="flex flex-col gap-2">
-                    <button class="px-6 py-2 bg-[#1B365D] text-white font-bold rounded-lg hover:opacity-90 active:scale-95 transition-all">
+                    <button aria-label="Editar perfil de usuario" class=" focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1B365D] px-6 py-2 bg-[#1B365D] text-white font-bold rounded-lg hover:opacity-90 active:scale-95 transition-all">
                         Editar Perfil
                     </button>
-                    <button class="px-6 py-2 bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-white font-bold rounded-lg hover:bg-slate-300 dark:hover:bg-slate-600 active:scale-95 transition-all">
+                    <button aria-label= "cambiar contraseña de usuario" class="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1B365D] px-6 py-2 bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-white font-bold rounded-lg hover:bg-slate-300 dark:hover:bg-slate-600 active:scale-95 transition-all">
                         Cambiar Contraseña
                     </button>
                 </div>
@@ -77,7 +77,7 @@
                     @endif
 
                     @if ($errors->any())
-                        <div class="bg-red-50 dark:bg-red-900/20 border border-red-300 dark:border-red-700 rounded-lg p-4 mb-6">
+                        <div role = "alert" aria-live="polite" class="bg-red-50 dark:bg-red-900/20 border border-red-300 dark:border-red-700 rounded-lg p-4 mb-6">
                             <p class="text-sm font-bold text-red-700 dark:text-red-400 mb-2">Por favor, corrija los siguientes errores:</p>
                             <ul class="text-xs text-red-600 dark:text-red-300 list-disc list-inside space-y-1">
                                 @foreach ($errors->all() as $error)
@@ -201,13 +201,13 @@
                         <div class="flex flex-col md:flex-row gap-4 pt-6 border-t border-slate-200 dark:border-slate-700">
                             <button 
                                 type="submit"
-                                class="flex-1 px-6 py-3 bg-[#1B365D] text-white font-bold rounded-lg hover:opacity-90 active:scale-95 transition-all"
+                                class="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1B365D] flex-1 px-6 py-3 bg-[#1B365D] text-white font-bold rounded-lg hover:opacity-90 active:scale-95 transition-all"
                             >
                                 Guardar Cambios
                             </button>
                             <button 
                                 type="reset"
-                                class="flex-1 px-6 py-3 bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-white font-bold rounded-lg hover:bg-slate-300 dark:hover:bg-slate-600 active:scale-95 transition-all"
+                                class=" focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1B365D] flex-1 px-6 py-3 bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-white font-bold rounded-lg hover:bg-slate-300 dark:hover:bg-slate-600 active:scale-95 transition-all"
                             >
                                 Cancelar
                             </button>
@@ -277,7 +277,7 @@
 
                             <button 
                                 type="submit"
-                                class="px-6 py-2 bg-[#1B365D] text-white font-bold rounded-lg hover:opacity-90 active:scale-95 transition-all"
+                                class="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1B365D] px-6 py-2 bg-[#1B365D] text-white font-bold rounded-lg hover:opacity-90 active:scale-95 transition-all"
                             >
                                 Actualizar Contraseña
                             </button>
@@ -297,14 +297,15 @@
                             <div class="flex items-center gap-3 p-4 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
                                 <input 
                                     type="checkbox"
+                                    aria-checked="false"
                                     id="email_notifications"
                                     name="email_notifications"
                                     checked
-                                    class="w-4 h-4 accent-[#1B365D] cursor-pointer"
+                                    class=" notif-checkbox w-4 h-4 accent-[#1B365D] cursor-pointer"
                                 />
                                 <label for="email_notifications" class="flex-1 cursor-pointer">
                                     <p class="text-sm font-bold text-slate-900 dark:text-white">Notificaciones por correo</p>
-                                    <p class="text-xs text-slate-600 dark:text-slate-400">Recibe actualizaciones sobre tus incidencias</p>
+                                    <p class="text-xs text-slate-700 dark:text-slate-300">Recibe actualizaciones sobre tus incidencias</p>
                                 </label>
                             </div>
 
@@ -313,7 +314,7 @@
                                     type="checkbox"
                                     id="news_notifications"
                                     name="news_notifications"
-                                    class="w-4 h-4 accent-[#1B365D] cursor-pointer"
+                                    class=" notif-checkbox w-4 h-4 accent-[#1B365D] cursor-pointer"
                                 />
                                 <label for="news_notifications" class="flex-1 cursor-pointer">
                                     <p class="text-sm font-bold text-slate-900 dark:text-white">Noticias y novedades</p>
@@ -323,7 +324,7 @@
 
                             <button 
                                 type="submit"
-                                class="px-6 py-2 bg-[#1B365D] text-white font-bold rounded-lg hover:opacity-90 active:scale-95 transition-all"
+                                class=" focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1B365D] px-6 py-2 bg-[#1B365D] text-white font-bold rounded-lg hover:opacity-90 active:scale-95 transition-all"
                             >
                                 Guardar Preferencias
                             </button>
@@ -385,7 +386,7 @@
                             @method('DELETE')
 
                             <button type="submit"
-                                class="w-full mt-4 px-4 py-2 bg-red-500 text-white font-bold rounded-lg hover:opacity-90 active:scale-95 transition-all text-sm">
+                                class=" focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1B365D] w-full mt-4 px-4 py-2 bg-red-500 text-white font-bold rounded-lg hover:opacity-90 active:scale-95 transition-all text-sm">
                                 Eliminar Cuenta
                             </button>
                         </form>
@@ -407,7 +408,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const parent = this.closest("div");
 
             if (this.checked) {
-                parent.classList.add("ring-2", "ring-[#1B365D]", "bg-blue-50");
+                parent.classList.add("ring-2", "ring-[#1B365D]", "bg-blue-50", "dark:bg-slate-700");
             } else {
                 parent.classList.remove("ring-2", "ring-[#1B365D]", "bg-blue-50");
             }
