@@ -12,7 +12,7 @@
           <!-- Avatar con inicial -->
             @php
                 $name = Auth::user()->name ?? '';
-                $initial = strtoupper(mb_substr($name, 0, 1));
+                $initial = strtoupper(mb_substr(Auth::user()->name ?? 'U', 0, 1));
             @endphp
 
             <div class="flex-shrink-0">
@@ -290,6 +290,7 @@
                             Preferencias de Notificaciones
                         </h3>
                         
+                        
                         <form action="{{ route('profile.update.notifications') }}" method="POST" class="space-y-4">
                             @csrf
 
@@ -394,5 +395,27 @@
         </div>
     </div>
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const checkboxes = document.querySelectorAll(".notif-checkbox");
+
+    checkboxes.forEach((checkbox) => {
+        checkbox.addEventListener("change", function () {
+
+            const parent = this.closest("div");
+
+            if (this.checked) {
+                parent.classList.add("ring-2", "ring-[#1B365D]", "bg-blue-50");
+            } else {
+                parent.classList.remove("ring-2", "ring-[#1B365D]", "bg-blue-50");
+            }
+
+        });
+    });
+
+});
+</script>
 
 @endsection
