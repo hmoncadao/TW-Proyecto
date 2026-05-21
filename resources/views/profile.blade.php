@@ -8,6 +8,18 @@
         <!-- Encabezado del perfil -->
         <div class="bg-white dark:bg-slate-900 rounded-lg border border-[#C4C7CF] dark:border-slate-700 p-8 mb-6">
             <div class="flex flex-col md:flex-row items-center gap-6">
+                <!-- Foto de perfil -->
+          <!-- Avatar con inicial -->
+            @php
+                $name = Auth::user()->name ?? '';
+                $initial = strtoupper(mb_substr($name, 0, 1));
+            @endphp
+
+            <div class="flex-shrink-0">
+                <div class="w-32 h-32 rounded-full bg-gradient-to-br from-[#1B365D] to-slate-500 flex items-center justify-center text-white text-5xl font-black shadow-lg border-4 border-white dark:border-slate-700">
+                    {{ $initial }}
+                </div>
+            </div>
 
                 <!-- Información del usuario -->
                 <div class="flex-1 text-center md:text-left">
