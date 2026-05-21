@@ -204,15 +204,28 @@
                             <label for="password_confirmation" class="block text-sm font-bold text-[#1B365D] dark:text-blue-400 mb-2">
                                 Confirmar Contraseña <span class="text-red-500">*</span>
                             </label>
-                            <input 
-                                type="password"
-                                id="password_confirmation"
-                                name="password_confirmation"
-                                required
-                                minlength="8"
-                                placeholder="Repite tu contraseña"
-                                class="w-full px-4 py-2 border @error('password_confirmation') border-red-500 @else border-slate-300 dark:border-slate-600 @enderror rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#1B365D] focus:border-transparent"
-                            />
+
+                            <div class="relative">
+                                <input 
+                                    type="password"
+                                    id="password_confirmation"
+                                    name="password_confirmation"
+                                    required
+                                    minlength="8"
+                                    placeholder="Repite tu contraseña"
+                                    class="w-full px-4 py-2 pr-28 border @error('password_confirmation') border-red-500 @else border-slate-300 dark:border-slate-600 @enderror rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#1B365D] focus:border-transparent"
+                                />
+
+                                <button 
+                                    type="button"
+                                    onclick="togglePasswordConfirm()"
+                                    id="toggleBtnConfirm"
+                                    class="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-gray-500 font-semibold"
+                                >
+                                    Ver contraseña
+                                </button>
+                            </div>
+
                             @error('password_confirmation')
                                 <p class="text-xs text-red-500 mt-1">{{ $message }}</p>
                             @enderror
@@ -314,6 +327,20 @@ function togglePassword() {
         btn.innerText = 'Ver contraseña';
     }
 }
+
+function togglePasswordConfirm() {
+    const input = document.getElementById('password_confirmation');
+    const btn = document.getElementById('toggleBtnConfirm');
+
+    if (input.type === 'password') {
+        input.type = 'text';
+        btn.innerText = 'Ocultar contraseña';
+    } else {
+        input.type = 'password';
+        btn.innerText = 'Ver contraseña';
+    }
+}
+
 </script>
 
 @endsection

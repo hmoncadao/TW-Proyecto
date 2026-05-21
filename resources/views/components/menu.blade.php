@@ -1,3 +1,11 @@
+@php
+function active($route) {
+    return request()->routeIs($route)
+        ? 'text-[#1B365D] font-bold bg-slate-50 border-[#1B365D]'
+        : 'text-slate-600 border-transparent hover:text-[#1B365D] hover:font-bold hover:bg-slate-50 hover:border-[#1B365D]';
+}
+@endphp
+
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
 <!-- BOTÓN IZQUIERDO -->
@@ -17,125 +25,78 @@
 </button>
 
 <!-- OVERLAY -->
-<div
-    id="overlay"
-    class="fixed inset-0 bg-black/50 z-[9998] hidden lg:hidden"
-></div>
+<div id="overlay" class="fixed inset-0 bg-black/50 z-[9998] hidden lg:hidden"></div>
 
 <!-- LEFT SIDEBAR -->
 <aside
     id="sidebar"
-    class="
-        bg-white dark:bg-slate-900
-        border-r border-t border-[#C4C7CF] dark:border-slate-700
-        fixed left-0 top-16 bottom-0
-        z-[9999]
-        flex flex-col
-        w-64
-
-        transform -translate-x-full
-        transition-transform duration-300 ease-in-out
-
-        lg:translate-x-0
-    "
+    class="bg-white dark:bg-slate-900 border-r border-t border-[#C4C7CF] dark:border-slate-700
+    fixed left-0 top-16 bottom-0 z-[9999] flex flex-col w-64
+    transform -translate-x-full transition-transform duration-300 ease-in-out
+    lg:translate-x-0"
 >
 
     <div class="p-6 pt-16 lg:pt-6">
-        <h2 class="text-lg font-black text-[#1B365D] uppercase tracking-wider">
-            MENU
-        </h2>
-        <p class="text-xs text-slate-500 font-medium">
-            Selecciona la opción
-        </p>
+        <h2 class="text-lg font-black text-[#1B365D] uppercase tracking-wider">MENU</h2>
+        <p class="text-xs text-slate-500 font-medium">Selecciona la opción</p>
     </div>
 
     <nav class="flex-1 px-4 space-y-1 overflow-y-auto">
 
         @auth
-        <a class="flex items-center gap-3 px-3 py-3 rounded-lg transition
-            text-slate-600 border-l-4 border-transparent
-            hover:text-[#1B365D] hover:font-bold
-            hover:bg-slate-50 hover:border-[#1B365D]"
-            href="{{ route('profile') }}"
-        >
+        <a href="{{ route('profile') }}"
+           class="flex items-center gap-3 px-3 py-3 rounded-lg transition border-l-4 {{ active('profile') }}">
             <span class="material-symbols-outlined">account_circle</span>
             <span class="text-sm">Mi Perfil</span>
         </a>
 
         @if(Auth::user()->isAdmin())
-        <a class="flex items-center gap-3 px-3 py-3 rounded-lg transition
-            text-amber-700 border-l-4 border-transparent bg-amber-50
-            hover:bg-amber-100 hover:border-amber-500 font-semibold"
-            href="{{ route('admin.incidencias') }}"
-        >
+        <a href="{{ route('admin.incidencias') }}"
+           class="flex items-center gap-3 px-3 py-3 rounded-lg transition border-l-4
+           text-amber-700 bg-amber-50 hover:bg-amber-100 hover:border-amber-500 font-semibold">
             <span class="material-symbols-outlined">verified_user</span>
             <span class="text-sm">Panel Admin</span>
         </a>
         @endif
         @endauth
 
-        <a class="flex items-center gap-3 px-3 py-3 rounded-lg transition
-            text-slate-600 border-l-4 border-transparent
-            hover:text-[#1B365D] hover:font-bold
-            hover:bg-slate-50 hover:border-[#1B365D]"
-            href="/"
-        >
+        <a href="/"
+           class="flex items-center gap-3 px-3 py-3 rounded-lg transition border-l-4 {{ request()->is('/') ? 'text-[#1B365D] font-bold bg-slate-50 border-[#1B365D]' : 'text-slate-600 border-transparent hover:text-[#1B365D] hover:font-bold hover:bg-slate-50 hover:border-[#1B365D]' }}">
             <span class="material-symbols-outlined">home</span>
             <span class="text-sm">Página Principal</span>
         </a>
 
-        <a class="flex items-center gap-3 px-3 py-3 rounded-lg transition
-            text-slate-600 border-l-4 border-transparent
-            hover:text-[#1B365D] hover:font-bold
-            hover:bg-slate-50 hover:border-[#1B365D]"
-            href="/panel"
-        >
+        <a href="/panel"
+           class="flex items-center gap-3 px-3 py-3 rounded-lg transition border-l-4 {{ request()->is('panel*') ? 'text-[#1B365D] font-bold bg-slate-50 border-[#1B365D]' : 'text-slate-600 border-transparent hover:text-[#1B365D] hover:font-bold hover:bg-slate-50 hover:border-[#1B365D]' }}">
             <span class="material-symbols-outlined">admin_panel_settings</span>
             <span class="text-sm">Panel Ayuntamiento</span>
         </a>
 
-        <a class="flex items-center gap-3 px-3 py-3 rounded-lg transition
-            text-slate-600 border-l-4 border-transparent
-            hover:text-[#1B365D] hover:font-bold
-            hover:bg-slate-50 hover:border-[#1B365D]"
-            href="/reportar"
-        >
+        <a href="/reportar"
+           class="flex items-center gap-3 px-3 py-3 rounded-lg transition border-l-4 {{ request()->is('reportar') ? 'text-[#1B365D] font-bold bg-slate-50 border-[#1B365D]' : 'text-slate-600 border-transparent hover:text-[#1B365D] hover:font-bold hover:bg-slate-50 hover:border-[#1B365D]' }}">
             <span class="material-symbols-outlined">report_problem</span>
             <span class="text-sm">Reportar incidencia</span>
         </a>
 
-        <a class="flex items-center gap-3 px-3 py-3 rounded-lg transition
-            text-slate-600 border-l-4 border-transparent
-            hover:text-[#1B365D] hover:font-bold
-            hover:bg-slate-50 hover:border-[#1B365D]"
-            href="/incidencias"
-        >
+        <a href="/incidencias"
+           class="flex items-center gap-3 px-3 py-3 rounded-lg transition border-l-4 {{ request()->is('incidencias') ? 'text-[#1B365D] font-bold bg-slate-50 border-[#1B365D]' : 'text-slate-600 border-transparent hover:text-[#1B365D] hover:font-bold hover:bg-slate-50 hover:border-[#1B365D]' }}">
             <span class="material-symbols-outlined">public</span>
             <span class="text-sm">Incidencias</span>
         </a>
 
-        <a class="flex items-center gap-3 px-3 py-3 rounded-lg transition
-            text-slate-600 border-l-4 border-transparent
-            hover:text-[#1B365D] hover:font-bold
-            hover:bg-slate-50 hover:border-[#1B365D]"
-            href="/contacto"
-        >
+        <a href="/contacto"
+           class="flex items-center gap-3 px-3 py-3 rounded-lg transition border-l-4 {{ request()->is('contacto') ? 'text-[#1B365D] font-bold bg-slate-50 border-[#1B365D]' : 'text-slate-600 border-transparent hover:text-[#1B365D] hover:font-bold hover:bg-slate-50 hover:border-[#1B365D]' }}">
             <span class="material-symbols-outlined">mail</span>
             <span class="text-sm">Contacto</span>
         </a>
 
-        <a class="flex items-center gap-3 px-3 py-3 rounded-lg transition
-            text-slate-600 border-l-4 border-transparent
-            hover:text-[#1B365D] hover:font-bold
-            hover:bg-slate-50 hover:border-[#1B365D]"
-            href="{{ asset('pdf/como_se_hizo.pdf') }}" target="_blank"
-        >
+        <a href="{{ asset('pdf/como_se_hizo.pdf') }}" target="_blank"
+           class="flex items-center gap-3 px-3 py-3 rounded-lg transition text-slate-600 hover:text-[#1B365D] hover:bg-slate-50">
             <span class="material-symbols-outlined">description</span>
             <span class="text-sm">Cómo se hizo</span>
         </a>
 
     </nav>
-
 </aside>
 
 <!-- RIGHT SIDEBAR -->
@@ -143,17 +104,10 @@
 
 <aside
     id="rightSidebar"
-    class="
-        bg-white dark:bg-slate-900
-        border-l border-t border-[#C4C7CF] dark:border-slate-700
-        fixed right-0 top-16 bottom-0
-        w-64 flex flex-col z-[9999]
-
-        transform translate-x-full
-        transition-transform duration-300 ease-in-out
-
-        lg:translate-x-0
-    "
+    class="bg-white dark:bg-slate-900 border-l border-t border-[#C4C7CF] dark:border-slate-700
+    fixed right-0 top-16 bottom-0 w-64 flex flex-col z-[9999]
+    transform translate-x-full transition-transform duration-300 ease-in-out
+    lg:translate-x-0"
 >
 
     <div class="p-6 pt-16 lg:pt-6 border-b border-slate-100">
@@ -174,30 +128,22 @@
 
         <div class="bg-slate-50 rounded-lg p-3">
             <p class="text-xs text-slate-500">Incidencias hoy</p>
-            <p class="text-lg font-bold text-[#1B365D]">
-                {{ $datos['incidenciasHoy'] }}
-            </p>
+            <p class="text-lg font-bold text-[#1B365D]">{{ $datos['incidenciasHoy'] }}</p>
         </div>
 
         <div class="bg-slate-50 rounded-lg p-3">
             <p class="text-xs text-slate-500">Este mes</p>
-            <p class="text-lg font-bold text-[#1B365D]">
-                {{ $datos['esteMes'] }}
-            </p>
+            <p class="text-lg font-bold text-[#1B365D]">{{ $datos['esteMes'] }}</p>
         </div>
 
         <div class="bg-slate-50 rounded-lg p-3">
             <p class="text-xs text-slate-500">Total</p>
-            <p class="text-lg font-bold text-[#1B365D]">
-                {{ $datos['total'] }}
-            </p>
+            <p class="text-lg font-bold text-[#1B365D]">{{ $datos['total'] }}</p>
         </div>
 
         <div class="bg-slate-50 rounded-lg p-3">
             <p class="text-xs text-slate-500">% resueltas</p>
-            <p class="text-lg font-bold text-green-600">
-                {{ $datos['porcentajeResueltas'] }}%
-            </p>
+            <p class="text-lg font-bold text-green-600">{{ $datos['porcentajeResueltas'] }}%</p>
         </div>
 
     </div>
